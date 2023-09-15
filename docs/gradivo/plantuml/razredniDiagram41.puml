@@ -1,0 +1,43 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+
+Class "ZMObčina" as ZMObcina <<boundary>> #lightBlue {
+ +odpriObrazecZaUrejanjePodatkovObcine(): void
+ +odpriObrazecZaDodajanjeFotografije(): void
+}
+
+Class "KrmilnikObčina" as KrmilnikObcina <<control>> #lightGray {
+  +prikazPodatkiObcine(Object req, Object res): void
+  +shraniPodatkeObcine(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +dodajFotografijo(Object req, Object res): void
+  +izbrisiFotografijo(Object req, Object res): void
+  +prikaziSeznamObcin(Object req, Object res): void
+  +spremeniObcina(Object req, Object res): void
+}
+
+Class "Občina" as Obcina <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -fotogalerija: Slika[]
+  -opis: string
+  -organizacija: Uporabnik[]
+  --
+  +vrniObcinaID(Object req, Object res): void
+  +urediObcinaID(Object req, Object res): void
+}
+
+
+ZMObcina "1..1 " -right-> " 1..1" KrmilnikObcina
+KrmilnikObcina "0..1 " -right-> " 0..*" Obcina
+@enduml

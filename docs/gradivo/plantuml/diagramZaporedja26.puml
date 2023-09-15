@@ -1,0 +1,36 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Občan" as Prijavljen <<actor>>
+participant "ZMSeznamPredlogov" as SeznamPredlogov <<boundary>> #lightBlue
+participant "KrmilnikPredloga" as Krmilnik <<control>> #lightGray
+participant “PredlogProjekta” as Predloga <<entity>> #lightYellow
+
+Prijavljen -> Krmilnik: 1. seznamPredlogov(req, res)
+activate Krmilnik
+Krmilnik -> Predloga: 2. vrniVsi(req, res)
+activate Predloga
+Krmilnik <-- Predloga: // sporočilo OK in seznam vseh potrjenih predlogov
+deactivate Predloga
+SeznamPredlogov <-- Krmilnik: // preusmeri na seznam vseh potrjenih predlogov
+deactivate Krmilnik
+activate SeznamPredlogov
+SeznamPredlogov -> SeznamPredlogov: 3. odpriObrazecZaDodajanjePredlogaProjekta()
+activate SeznamPredlogov
+SeznamPredlogov -> Krmilnik: 4. shraniPredlogProjekta(req, res)
+activate Krmilnik
+Krmilnik -> Krmilnik: 5. validacijaAtributov(body)
+activate Krmilnik
+deactivate Krmilnik
+SeznamPredlogov <-- Krmilnik: // sporočilo o napačni vnosni vrednosti
+@enduml

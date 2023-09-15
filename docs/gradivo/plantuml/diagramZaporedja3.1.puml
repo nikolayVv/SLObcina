@@ -1,0 +1,59 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+actor "Neregistrirani uporabnik" as Neregistriran <<actor>>
+participant "ZMRegistracijskiObrazec" as Obrazec <<boundary>> #lightBlue
+participant "KrmilnikRegistracija" as Krmilnik <<control>> #lightGray
+
+Neregistriran -> Obrazec: 1. zacniRegistracijo()
+activate Obrazec
+Obrazec -> Krmilnik: 2. registracija(req, res)
+activate Krmilnik@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+actor "Neregistrirani uporabnik" as Neregistriran <<actor>>
+participant "ZMRegistracijskiObrazec" as Obrazec <<view>> #lightBlue
+participant "KrmilnikRegistracija" as Krmilnik <<controller>> #lightGray
+participant Uporabnik <<model>> #lightYellow
+
+Neregistriran -> Obrazec: 1. zacniRegistracijo()
+activate Obrazec
+Obrazec -> Krmilnik: 2. registracija(req, res)
+activate Krmilnik
+Krmilnik -> Krmilnik: 3. validacijaAtributov(body)
+activate Krmilnik
+deactivate Krmilnik
+Krmilnik -> Uporabnik: 4. dodajUporabnik(req, res)
+activate Uporabnik
+Uporabnik -> Uporabnik: 5. preveriAtribute(akcija)
+activate Uporabnik
+deactivate Uporabnik
+Krmilnik <-- Uporabnik: // sporočilo ERROR
+deactivate Uporabnik
+Obrazec <-- Krmilnik: // sporočilo o napačni vnosni vrednosti
+deactivate Krmilnik
+@enduml
+Krmilnik -> Krmilnik: 3. validacijaAtributov(body)
+activate Krmilnik
+deactivate Krmilnik
+Obrazec <-- Krmilnik: // sporočilo o napačni vnosni vrednosti
+deactivate Krmilnik
+@enduml

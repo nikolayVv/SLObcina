@@ -1,0 +1,40 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Občan\nAdministrator\nUpravljalec predlogov (organizacija)\nUpravljalec novic\nUpravljalec dogodkov\nNeprijavljeni uporabnik" as Prijavljen <<actor>>
+participant "ZMPodatkiPredlog" as PodatkiPredlog <<boundary>> #lightBlue
+participant "ZMSeznamPredlogov" as SeznamPredlogov <<boundary>> #lightBlue
+participant "KrmilnikPredloga" as PKrmilnik <<control>> #lightGray
+participant “PredlogProjekta” as Predloga <<model>> #lightYellow
+ 
+Prijavljen -> PKrmilnik: 1. seznamPredlogov(req, res)
+activate PKrmilnik
+PKrmilnik -> Predloga: 2. vrniVsi(req, res)
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in seznam vseh predlogov
+deactivate Predloga
+SeznamPredlogov <-- PKrmilnik: // preusmeri na seznam vseh potrjenih predlogov
+deactivate PKrmilnik
+activate SeznamPredlogov
+SeznamPredlogov -> PKrmilnik: 3. filtrirajSeznamPredlogovProjektov(req, res)
+activate PKrmilnik
+PKrmilnik -> Predloga: 4. vrniVsiFilter(req, res) 
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in urejen seznam predlogov projektov
+deactivate Predloga
+PKrmilnik -> PKrmilnik: 5. razvrstiSeznamPredlogovProjektov(predlogi, akcija)
+activate PKrmilnik
+deactivate PKrmilnik
+SeznamPredlogov <-- PKrmilnik: // vrni posodobljen seznam potrjenih predlogov
+deactivate PKrmilnik
+@enduml

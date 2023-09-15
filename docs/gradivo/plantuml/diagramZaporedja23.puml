@@ -1,0 +1,37 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Upravljalec novic" as Prijavljen <<actor>>
+participant "ZMSeznamNovic" as SeznamNovic <<boundary>> #lightBlue 
+participant "KrmilnikNovic" as Krmilnik <<control>> #lightGray
+participant Novica <<entity>> #lightYellow
+ 
+Prijavljen -> Krmilnik: 1. seznamNovic(req, res)
+activate Krmilnik
+Krmilnik -> Novica: 2. vrniVsi(req, res)
+activate Novica
+Krmilnik <-- Novica: // sporočilo OK in seznam vseh novic
+deactivate Novica
+SeznamNovic <-- Krmilnik: // preusmeri na seznam vseh novic
+deactivate Krmilnik
+activate SeznamNovic
+SeznamNovic -> Krmilnik: 3. prikaziNovica(req, res)
+activate Krmilnik
+Krmilnik -> Novica: 4. vrniNovicaID(req, res)
+activate Novica
+Krmilnik <-- Novica: // sporočilo OK in novica,\nki ji pripada izbran ID
+deactivate Novica
+SeznamNovic <-- Krmilnik: // odpri modalno okno (obrazec)\nin notri prikaži izbrano novico
+deactivate Krmilnik
+activate SeznamNovic
+@enduml

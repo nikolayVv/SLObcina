@@ -1,0 +1,68 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Upravljalec dogodkov" as Prijavljen <<actor>>
+participant "ZMDomačaStran" as DomacaStran <<boundary>>  #lightBlue
+participant "KrmilnikNovica" as NKrmilnik <<control>> #lightGray
+participant "KrmilnikPredloga" as PKrmilnik <<control>> #lightGray
+participant "KrmilnikDogodek" as DKrmilnik <<control>> #lightGray
+participant "PredlogProjekta" as Predloga <<entity>> #lightYellow
+participant Novica <<entity>> #lightYellow
+participant "SVGoogleCalendar\n API" as Dogodek <<boundary>>  #lightBlue
+
+
+
+Prijavljen -> DomacaStran: 1. prikazDomacaStran()
+
+DomacaStran -> DKrmilnik: 2. vrniSeznamDogodkov(req, res)
+activate DKrmilnik
+DKrmilnik -> Dogodek: 3. vrniSeznamDogodkovIzKoledarja()\n // GET klic na\nhttps://www.googleapis.com/calendar/v3/users/me/calendarList
+activate Dogodek
+DKrmilnik <-- Dogodek: // sporočilo OK in seznam dogodkov
+deactivate Dogodek
+DomacaStran <-- DKrmilnik: // vrni seznam dogodkov
+deactivate DKrmilnik
+DomacaStran -> NKrmilnik: 4. vrniZadnjeNovice(req, res)
+activate NKrmilnik
+NKrmilnik -> Novica: 5. vrniVsiFilter(req, res)
+activate Novica
+NKrmilnik <-- Novica: // sporočilo OK in seznam zadnjih 4 novic
+deactivate Novica
+DomacaStran <-- NKrmilnik: // vrni zadnje 4 novice
+deactivate NKrmilnik
+DomacaStran -> PKrmilnik: 6. vrniNajPriljubljeni(req, res)
+activate PKrmilnik
+PKrmilnik -> Predloga: 7. vrniVsiFilter(req, res)
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in seznam\nnajbolj priljubljenih predlogov
+deactivate Predloga
+DomacaStran <-- PKrmilnik: // vrni najbolj priljubljenih predlogov\nin prikaži domačo stran
+deactivate PKrmilnik
+activate DomacaStran
+DomacaStran -> DKrmilnik: 8. prikaziDogodek(req, res)
+activate DKrmilnik
+DKrmilnik -> Dogodek: 9. prikaziDogodekIzKoledarja()\n // GET klic na\nhttps://www.googleapis.com/calendar/v3/calendars/[calendarId]/events
+activate Dogodek
+DKrmilnik <-- Dogodek: // sporočilo OK in izbran dogodek
+deactivate Dogodek
+DomacaStran <-- DKrmilnik: // prikaži podatke o izbranega dogodka\n(odpri modalno okno)
+deactivate DKrmilnik
+activate DomacaStran
+DomacaStran -> DKrmilnik: 10. urediDogodek(req, res)
+activate DKrmilnik
+DKrmilnik -> DKrmilnik: 11. validacijaAtributov(body)
+activate DKrmilnik
+deactivate DKrmilnik
+DomacaStran <-- DKrmilnik: // sporočilo o napačni vnosni vrednosti
+deactivate DKrmilnik
+@enduml

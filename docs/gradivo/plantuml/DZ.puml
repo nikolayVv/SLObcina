@@ -1,0 +1,41 @@
+@startuml DZ
+
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+actor "Uporabnik 1" AS U1 <<actor>>
+
+participant "Razred 5" as R5 <<boundary>>
+participant "Razred 2" as R2 <<control>>
+participant "Razred 4" as R4 <<entity>>
+
+activate U1
+U1 -> R5: p1 := metoda6()
+activate R5
+R5 -> R2: p2 := metoda1(13)
+activate R2
+
+loop za vsako vrednost
+  R2 -> R4: p3 := metoda4()
+  activate R4
+  R4 -> R4: p4 := metoda5(now())
+  activate R4
+  R4 --> R2: p4
+  deactivate R4
+  deactivate R4
+  R2 -> R2: // Dodaj {p3: p4}\n// v seznam
+end
+
+R2 --> R5: // Vse vrednosti\n// obdelane
+deactivate R2
+R5 --> U1: // Obvesti uporabnika
+
+@enduml

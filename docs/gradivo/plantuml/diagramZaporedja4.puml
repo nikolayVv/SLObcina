@@ -1,0 +1,39 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Občan\nAdministrator\nUpravljalec predlogov (organizacija)\nUpravljalec novic\nUpravljalec dogodkov" as Neprijavljen <<actor>>
+participant "ZMPrijavniObrazec" as Obrazec <<boundary>> #lightBlue
+participant "KrmilnikPrijava" as Krmilnik <<control>> #lightGray
+participant Uporabnik <<entity>> #lightYellow
+participant "ZMDomačaStran" as DomacaStran <<boundary>> #lightBlue
+
+
+Neprijavljen -> Obrazec: 1. zacniPrijavo()
+activate Obrazec
+Obrazec -> Krmilnik: 2. prijava(req, res)
+activate Krmilnik
+Krmilnik -> Krmilnik: 3. validacijaAtributov(body)
+activate Krmilnik
+deactivate Krmilnik
+Krmilnik -> Uporabnik: 4. vrniUporabnik(req, res)
+activate Uporabnik
+Uporabnik -> Uporabnik: 5. preveriAtribute(akcija)
+activate Uporabnik
+deactivate Uporabnik
+Krmilnik <-- Uporabnik: // sporočilo OK in uporabnik,\nki mu pripada vnešen email in geslo
+deactivate Uporabnik
+Krmilnik -> DomacaStran: 6. preusmeriNaDomacoStran()
+deactivate Krmilnik
+deactivate Obrazec
+activate DomacaStran
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Občan\nAdministrator\nUpravljalec predlogov (organizacija)\nUpravljalec novic\nUpravljalec dogodkov" as Prijavljen <<actor>>
+participant "ZMUporabniškiProfil" as MojProfil <<boundary>> #lightBlue
+participant "KrmilnikUporabnik" as Krmilnik <<control>>  #lightGray
+participant Uporabnik <<entity>> #lightYellow
+
+
+Prijavljen -> Krmilnik: 1. prikaziProfil(req, res)
+activate Krmilnik
+Krmilnik -> Uporabnik: 2. vrniUporabnikID(req, res)
+activate Uporabnik
+Krmilnik <-- Uporabnik: // sporočilo OK in uporabnik,\n ki mu pripada izbrano ID
+deactivate Uporabnik
+MojProfil <-- Krmilnik: // preusmeri na lastni uporabniški profil
+deactivate Krmilnik
+activate MojProfil
+@enduml

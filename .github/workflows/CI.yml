@@ -1,0 +1,45 @@
+name: Continuous integration
+
+env:
+  MONGODB_CLOUD_URI: ${{ secrets.MONGODB_CLOUD_URI }}
+  JWT_GESLO: ${{ secrets.JWT_GESLO }}
+  CLEARDB_DATABASE_URL: ${{ secrets.CLEARDB_DATABASE_URL }}
+on:
+  push:
+    branches: 
+      - test
+    paths-ignore:
+      - "README.md"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 
+      - ubuntu-latest
+    strategy:
+      matrix:
+        node-verzija:
+          - 16.x
+          
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-verzija }}
+        uses: actions/setup-node@v1
+        with: 
+          node-version: ${{ matrix.node-verzija }}
+      - name: Selenium setup
+        uses: nanasess/setup-chromedriver@v1
+        with:
+          chromedriver-version: '101.0.4951.41'
+      - run: |
+            export DISPLAY=:99
+            chromedriver --url-base=/wd/hub &
+            sudo Xvfb -ac :99 -screen 0 1920x1080x24 > /dev/null 2>&1 & # optional
+      - name: Server setup
+        run: cd src && npm install
+      - name: Application setup
+        run: cd src/app_public && npm install && npm run build -- --configuration development
+      - name: Testing
+        run: cd src && npm test

@@ -1,0 +1,98 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "ZMPodatkiPredlog" as ZMPodatkiPredlog <<boundary>> #lightBlue {
+ +odpriObrazec(): void
+}
+
+Class "ZMSeznamPredlogov" as ZMSeznamPredlogov <<boundary>> #lightBlue {
+}
+
+
+Class "ZMUporabniškiProfil" as ZMUporabniskiProfil <<boundary>> #lightBlue {
+  +odpriObrazecZaUrejanjeProfila(): void
+}
+
+Class "KrmilnikUporabnik" as KrmilnikUporabnik <<control>> #lightGray {
+  +seznamUporabnikov(Object req, Object res): void
+  +urediProfil(Object req, Object res): void
+  +izbrisiProfil(Object req, Object res): void
+  +prikaziProfil(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+}
+
+
+Class "KrmilnikPredloga" as KrmilnikPredloga <<control>> #lightGray {
+  +seznamPredlogov(Object req, Object res): void
+  +prikaziPredlogProjekta(Object req, Object res): void
+  +shraniPredlogProjekta(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +spremeniStatusPredlogProjekta(Object req, Object res): void
+  +vrniNajPriljubljeni(Object req, Object res): void
+  +oceniPredlogProjekta(Object req, Object res): void
+  +filtrirajSeznamPredlogovProjektov(Object req, Object res): void
+  +razvrstiSeznamPredlogovProjektov(Predlog[] predlogi, string akcija): void
+  +razvrsti(Object req, Object res): void
+}
+
+Class "Uporabnik" as Uporabnik <<entity>> #lightYellow {
+  -id: string
+  -ime: string
+  -priimek: string
+  -hashGeslo: string
+  -key: string
+  -slikaUporabnika: Slika[]
+  -email: string
+  -telefonskaStevilka: string
+  -rojstniDatum: date
+  -naslov: string
+  -mesto: string
+  -obcina: Obcina[]
+  -opis: string
+  -registriranOd: date
+  -vloga: string
+  -predlogi: Predlog[]
+  -novice: Novica[]
+  -organizacije: Organizacija[]
+  --
+  +dodajUporabnik(Object req, Object res): void
+  +vrniUporabnik(Object req, Object res): void
+  +preveriAtribute(Object akcija): boolean
+  +vrniVsi(Object req, Object res): void
+  +vrniUporabnikID(Object req, Object res): void
+  +urediUporabnikID(Object req, Object res): void
+  +izbrisiUporabnikID(Object req, Object res): void
+}
+
+Class "PredlogProjekta" as PredlogProjekta <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -sporocilo: string
+  -razred: string
+  -jePotrjen: boolean
+  -datum: date
+  -ocene: Ocena[]
+  --
+  +vrniVsi(Object req, Object res): void
+  +vrniPredlogProjektaID(Object req, Object res): void
+  +urediPredlogProjektaID(Object req, Object res): void
+  +dodajPredlogProjekta(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+ZMPodatkiPredlog "1..1 " -down-> "     1..1" KrmilnikUporabnik
+ZMSeznamPredlogov "1..1 " -right-> "     1..1" KrmilnikPredloga
+ZMUporabniskiProfil "1..1 " -right-> "     1..1" KrmilnikUporabnik
+KrmilnikUporabnik "0..1  " -down-> " 0..*" Uporabnik
+KrmilnikPredloga "0..1 " -down-> "     0..*" PredlogProjekta
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Administrator" as Prijavljen <<actor>>
+participant "ZMObčina" as PodatkiObcine <<boundary>> #lightBlue
+participant "ZMUporabniškiProfil" as MojProfil <<boundary>> #lightBlue
+participant "ZMDomačaStran" as DomacaStran <<boundary>> #lightBlue
+participant "KrmilnikUporabnik" as Krmilnik <<control>> #lightGray
+participant "KrmilnikObčina" as OKrmilnik <<control>> #lightGray
+participant Uporabnik <<entity>> #lightYellow
+participant "Občina" as Obcina <<entity>> #lightYellow
+
+Prijavljen -> OKrmilnik: 1. prikazPodatkiObcine(req, res)
+activate OKrmilnik
+OKrmilnik -> Obcina: 2. vrniObcinaID(req, res)
+activate Obcina
+OKrmilnik <-- Obcina: // sporočilo OK in podatki o izbrani občini
+deactivate Obcina
+PodatkiObcine <-- OKrmilnik: // preusmeri na podatke o občini
+deactivate OKrmilnik
+activate PodatkiObcine
+PodatkiObcine -> Krmilnik: 3. prikaziProfil(req, res)\n// izberi organizacijo
+activate Krmilnik
+Krmilnik -> Uporabnik: 4. vrniUporabnikID(req, res)
+activate Uporabnik
+Krmilnik <-- Uporabnik: // sporočilo OK in uporabnik (organizacija),\n ki mu pripada izbran ID
+deactivate Uporabnik
+MojProfil <-- Krmilnik: // preusmeri na uporabniški profil (organizacija)
+deactivate Krmilnik
+deactivate PodatkiObcine
+activate MojProfil
+MojProfil -> Krmilnik: 5. izbrisiProfil(req, res)
+activate Krmilnik
+Krmilnik -> Uporabnik: 6. izbrisiUporabnikID(req, res)
+activate Uporabnik
+Krmilnik <-- Uporabnik: // sporočilo OK
+deactivate Uporabnik
+DomacaStran <-- Krmilnik: 7. preusmeriNaDomacoStran()
+deactivate Krmilnik
+deactivate MojProfil
+activate DomacaStran
+@enduml

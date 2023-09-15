@@ -1,0 +1,25 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "KrmilnikPrijava" as KrmilnikPrijava <<control>> #lightGray {
+  +prijava(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +odjava(Object req, Object res): void
+}
+
+Class "ZMDomačaStran" as ZMDomacaStran <<boundary>> #lightBlue {
+  +preusmeriNaDomacoStran(): void
+  +prikazDomacaStran(): void
+}
+
+KrmilnikPrijava "1..1 " -right-> "     1..1" ZMDomacaStran
+@enduml

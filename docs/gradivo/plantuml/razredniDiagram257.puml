@@ -1,0 +1,91 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+
+Class "ZMDomačaStran" as ZMDomacaStran <<boundary>> #lightBlue {
+  +preusmeriNaDomacoStran(): void
+  +prikazDomacaStran(): void
+}
+
+Class "KrmilnikNovica" as KrmilnikNovica <<control>> #lightGray {
+  +seznamNovic(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +shraniNovica(Object req, Object res): void
+  +prikaziNovica(string id): void
+  +izbrisiNovica(string id): void
+  +vrniZadnjeNovice(Object req, Object res): void
+}
+Class "KrmilnikPredloga" as KrmilnikPredloga <<control>> #lightGray {
+  +seznamPredlogov(Object req, Object res): void
+  +prikaziPredlogProjekta(Object req, Object res): void
+  +shraniPredlogProjekta(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +spremeniStatusPredlogProjekta(Object req, Object res): void
+  +vrniNajPriljubljeni(Object req, Object res): void
+  +oceniPredlogProjekta(Object req, Object res): void
+  +filtrirajSeznamPredlogovProjektov(Object req, Object res): void
+  +razvrstiSeznamPredlogovProjektov(Predlog[] predlogi, string akcija): void
+  +razvrsti(Object req, Object res): void
+}
+
+Class "KrmilnikDogodek" as KrmilnikDogodek <<control>> #lightGray {
+  +dodajDogodek(Object req, Object res): void
+  +urediDogodek(Object req, Object res): void
+  +izbrisiDogodek(string id): void
+  +validacijaAtributov(Object body): boolean
+  +prikaziDogodek(Object req, Object res): void
+  +vrniSeznamDogodkov(Object req, Object res): void
+  +sihroniziraj(Object req, Object res): void
+}
+Class "PredlogProjekta" as PredlogProjekta <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -sporocilo: string
+  -razred: string
+  -jePotrjen: boolean
+  -datum: date
+  -ocene: Ocena[]
+  --
+  +vrniVsi(Object req, Object res): void
+  +vrniPredlogProjektaID(Object req, Object res): void
+  +urediPredlogProjektaID(Object req, Object res): void
+  +dodajPredlogProjekta(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+Class "Novica" as Novica <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -vsebina: string
+  -datumObjave: date
+  --
+  +vrniVsi(): void
+  +vrniNovicaID(Object req, Object res): void
+  +urediNovicaID(Object req, Object res): void
+  +izbrisiNovicaID(Object req, Object res): void
+  +dodajNovica(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+Class "SVGoogleCalendar API" as SVGoogleCalendarAPI <<boundary>> #lightBlue {
+ +vrniSeznamDogodkovIzKoledarja(): void
+ +prikaziDogodekIzKoledarja(): void
+ +urediDogodekVKoledarju(): void
+}
+
+ZMDomacaStran "1..1 " -right-> " 1..1" KrmilnikDogodek
+ZMDomacaStran "1..1 " -right-> " 1..1" KrmilnikNovica
+ZMDomacaStran "1..1 " -right-> " 1..1" KrmilnikPredloga
+KrmilnikNovica "0..1 " -down-> " 0..*" Novica
+KrmilnikPredloga "0..1 " -down-> " 0..*" PredlogProjekta
+KrmilnikDogodek "1..1 " -down-> " 0..1" SVGoogleCalendarAPI
+@enduml

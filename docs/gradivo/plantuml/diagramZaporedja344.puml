@@ -1,0 +1,39 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Administrator" as Prijavljen <<actor>>
+participant "ZMObčina" as PodatkiObcine <<boundary>> #lightBlue
+participant "KrmilnikObčina" as OKrmilnik <<control>> #lightGray
+participant "Občina" as Obcina <<entity>> #lightYellow
+
+Prijavljen -> OKrmilnik: 1. prikazPodatkiObcine(req, res)
+activate OKrmilnik
+OKrmilnik -> Obcina: 2. vrniObcinaID(req, res)
+activate Obcina
+OKrmilnik <-- Obcina: // sporočilo OK in podatki o izbrani občini
+deactivate Obcina
+PodatkiObcine <-- OKrmilnik: // preusmeri na podatke o občini
+deactivate OKrmilnik
+activate PodatkiObcine
+PodatkiObcine -> PodatkiObcine: 3. odpriObrazecZaDodajanjeFotografije()
+activate PodatkiObcine
+PodatkiObcine -> OKrmilnik: 4. izbrisiFotografijo(req, res)
+activate OKrmilnik
+OKrmilnik -> Obcina: 6. urediObcinaID(req, res)
+activate Obcina
+OKrmilnik <-- Obcina: // sporočilo OK in urejene podatke o občini
+deactivate Obcina
+PodatkiObcine <-- OKrmilnik: // prikaži posodobljene podatke občine
+deactivate OKrmilnik
+deactivate PodatkiObcine
+@enduml

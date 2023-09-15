@@ -1,0 +1,23 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "ZMRegistracijskiObrazec" as ZMRegistracijskiObrazec <<boundary>> #lightBlue {
+  +zacniRegistracijo(): void
+}
+
+Class "KrmilnikRegistracija" as KrmilnikRegistracija <<control>> #lightGray {
+  +registracija(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+}
+
+ZMRegistracijskiObrazec "1..1 " -right-> "     1..1" KrmilnikRegistracija
+@enduml

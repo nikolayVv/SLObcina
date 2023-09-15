@@ -1,0 +1,75 @@
+
+@startuml
+skinparam backgroundColor transparent
+left to right direction
+
+scale 0.8
+
+<style>
+stateDiagram {
+  arrow {
+    LineColor black
+  }
+}
+</style>
+
+skinparam State {
+  BackgroundColor #e8f5fd
+  BorderColor #5FB8EC
+}
+
+skinparam defaultTextAlignment center  
+
+state "A1" as A1 : <#e8f5fd,#e8f5fd>|  42 | 0 | 42 |\n|    0 | 0 | 42 |
+
+state "<color:darkred>A2</color>" as A2 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  10 | 0 | 10 |\n|    0 | 0 | 10 |
+
+state "B1" as B1 : <#e8f5fd,#e8f5fd>|  14 | 10 | 24 |\n|    4 | 14 | 28 |
+state "B2" as B2 : <#e8f5fd,#e8f5fd>| 5 | 10 | 15 |\n|    4 | 14 | 19 |
+state "<color:darkred>B3</color>" as B3 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  10 | 10 | 20 |\n|    0 | 10 | 20 |
+state "<color:darkred>B4</color>" as B4 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  8 | 20 | 28 |\n|    0 | 20 | 28 |
+state "B5" as B5 : <#e8f5fd,#e8f5fd>|  5 | 10 | 15 |\n|    15 | 25 | 30 |
+
+state "C1" as C1 : <#e8f5fd,#e8f5fd>|  8 | 24 | 32 |\n|    4 | 28 | 36 |
+state "C2" as C2 : <#e8f5fd,#e8f5fd>|  6 | 20 | 26 |\n|    10 | 30 | 36 |
+state "C3" as C3 : <#e8f5fd,#e8f5fd>|  6 | 20 | 26 |\n|    10 | 30 | 36 |
+state "<color:darkred>C4</color>" as C4 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  6 | 28 | 34 |\n|    0 | 28 | 34 |
+state "C5" as C5 : <#e8f5fd,#e8f5fd>|  6 | 15 | 21 |\n|    15 | 30 | 36 |
+state "C6" as C6 : <#e8f5fd,#e8f5fd>|  17 | 15 | 32 |\n|    4 | 19 | 36 |
+state "<color:darkred>C7</color>" as C7 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  2 | 34 | 36 |\n|    0 | 34 | 36 |
+state "<color:darkred>C8</color>" as C8 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  1,5 | 36 | 37,5 |\n|    0 | 36 | 37,5 |
+state "C9" as C9 : <#e8f5fd,#e8f5fd>|  5 | 32 | 37 |\n|    5 | 37 | 42 |
+state "<color:darkred>C10</color>" as C10 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  1,5 | 37,5 | 39 |\n|    0 | 37,5 | 39 |
+state "<color:darkred>C11</color>" as C11 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  1,5 | 39 | 40,5 |\n|    0 | 39 | 40,5 |
+state "<color:darkred>D1</color>" as D1 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  1,5 | 40,5 | 42 |\n|    0 | 40,5 | 42 |
+state "D2" as D2 : <#e8f5fd,#e8f5fd>|  3 | 36 | 39 |\n|    3 | 39 | 42 |
+
+
+A2 --> B1
+A2 --> B2
+A2 --> B3
+A2 --> B5
+
+B1 --> C1
+C1 --> C8
+B2 --> C6
+C6 --> C9
+C6 --> C8
+
+
+C8 --> C10
+C10 --> C11
+C11 --> D1
+B3 --> B4
+B3 --> C2
+C2 --> C8
+B3 --> C3
+C3 --> C8
+B5 --> C5
+C5 --> C8
+B4 --> C4
+C4 --> C7
+C7 --> D2
+C7 --> C8
+@enduml
+

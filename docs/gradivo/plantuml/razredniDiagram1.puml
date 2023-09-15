@@ -1,0 +1,59 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "ZMRegistracijskiObrazec" as ZMRegistracijskiObrazec <<boundary>> #lightBlue {
+  +zacniRegistracijo(): void
+}
+
+Class "KrmilnikRegistracija" as KrmilnikRegistracija <<control>> #lightGray {
+  +registracija(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+}
+
+Class "Uporabnik" as Uporabnik <<model>> #lightYellow {
+  -id: string
+  -ime: string
+  -priimek: string
+  -hashGeslo: string
+  -key: string
+  -slikaUporabnika: Slika[]
+  -email: string
+  -telefonskaStevilka: string
+  -rojstniDatum: date
+  -naslov: string
+  -mesto: string
+  -obcina: Obcina[]
+  -opis: string
+  -registriranOd: date
+  -vloga: string
+  -predlogi: Predlog[]
+  -novice: Novica[]
+  -organizacije: Organizacija[]
+  --
+  +dodajUporabnik(Object req, Object res): void
+  +vrniUporabnik(Object req, Object res): void
+  +preveriAtribute(Object akcija): boolean
+  +vrniVsi(Object req, Object res): void
+  +vrniUporabnikID(Object req, Object res): void
+  +urediUporabnikID(Object req, Object res): void
+  +izbrisiUporabnikID(Object req, Object res): void
+}
+
+Class "ZMDomačaStran" as ZMDomacaStran <<view>> #lightBlue {
+  +preusmeriNaDomacoStran(): void
+  +prikazDomacaStran(): void
+}
+
+ZMRegistracijskiObrazec "1..1 " -right-> "     1..1" KrmilnikRegistracija
+KrmilnikRegistracija "1..1 " -right-> "1..1 " ZMDomacaStran
+KrmilnikRegistracija "0..1  " -right-> " 0..*" Uporabnik
+@enduml

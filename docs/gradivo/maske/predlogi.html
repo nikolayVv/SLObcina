@@ -1,0 +1,488 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>SLObčina</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- <link rel="manifest" href="site.webmanifest"> -->
+   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+   <!-- Place favicon.ico in the root directory -->
+
+   <!-- CSS here -->
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/owl.carousel.min.css">
+   <link rel="stylesheet" href="css/magnific-popup.css">
+   <link rel="stylesheet" href="css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/themify-icons.css">
+   <link rel="stylesheet" href="css/nice-select.css">
+   <link rel="stylesheet" href="css/flaticon.css">
+   <link rel="stylesheet" href="css/gijgo.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/slick.css">
+   <link rel="stylesheet" href="css/slicknav.css">
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+   <link rel="stylesheet" href="css/style.css">
+   <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- header-start -->
+<header>
+   <div class="header-area ">
+      <div id="sticky-header" class="main-header-area">
+         <div class="container-fluid p-0">
+            <div class="row align-items-center no-gutters">
+               <div class="col-xl-2 col-lg-2">
+                  <div class="logo">
+                     <a href="index.html" class="h1 text-light">SLObčina</a>
+                  </div>
+               </div>
+               <div class="col-xl-6 col-lg-6">
+                  <div class="main-menu  d-none d-lg-block">
+                     <nav>
+                        <ul id="navigation">
+<!--                           <li><a href="#">Uporabniki</a></li>-->
+                           <li><a href="#">O občini</a></li>
+                           <li><a href="#">Predlogi</a></li>
+                           <li><a href="#">Novice</a></li>
+                           <li><a href="#" class="text-muted">Občina Dobrova - Polhov Gradec <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                              <ul class="submenu">
+                                 <li><a href="facilites.html">Facilities</a></li>
+                                 <li><a href="property.html">Properties</a></li>
+                                 <li><a href="elements.html">elements</a></li>
+                              </ul>
+                           </li>
+                        </ul>
+                     </nav>
+                  </div>
+               </div>
+               <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                  <div class="social_wrap d-flex align-items-center justify-content-end m-0">
+<!--                     <div class="login_text">-->
+<!--                        <a href="myProfile.html" class="btn btn-danger btn-lg"><i class="fa fa-user" aria-hidden="true"></i> Moj profil</a>-->
+<!--                     </div>-->
+<!--                     <div class="login_text">-->
+<!--                        <a href="#" class="btn btn-outline-danger ">Odjava</a>-->
+<!--                     </div>-->
+                       <div class="login_text">
+                           <a href="myProfile.html" class="btn btn-outline-danger">Prijava</a>
+                       </div>
+                       <div class="login_text">
+                           <a href="#" class="btn btn-danger btn-lg">Registracija</a>
+                       </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="mobile_menu d-block d-lg-none"></div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</header>
+<!-- header-end -->
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2" style="box-shadow: 2px 0px 22px 15px">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-12">
+            <div class="bradcam_text">
+               <h3>Predlogi</h3>
+               <button type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter">
+                  Dodaj predlog
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--/ bradcam_area  -->
+
+<section class="blog_area">
+   <div class="container-flex">
+     <div class="row row-xl-12">
+         <div class="col col-xl-12 blog_right_sidebar ">
+             <aside class="single_sidebar_widget search_widget bg-dark pt-4 pl-3 pr-3 pb-2" style="box-shadow: 2px 0px 12px 5px">
+                 <form action="#" class="m-0 p-0">
+                         <div class="row input-group m-0 p-0">
+                             <input type="text" class="form-control rounded" placeholder='Iskanje po naslovu predloga, organizaciji...'
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Iskanje po naslovu predloga, organizaciji...'">
+                         </div>
+                        <div class="row row-xl-12 input-group pt-2 justify-content-center m-0 p-0">
+                           <div class="col col-xl-6 form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                              <label class="form-check-label text-light" for="flexRadioDefault1">
+                                 Razvrsti po datumu
+                              </label>
+                           </div>
+                           <div class="col col-xl-6 form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                              <label class="form-check-label text-light" for="flexRadioDefault2">
+                                 Razvrsti po oceni
+                              </label>
+                           </div>
+                        </div>
+                 </form>
+             </aside>
+         </div>
+     </div>
+      <div class="row row-xl-12 mb-2">
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/author2.png" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>6.2</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Avtomobilizem</b>
+                  <p class="card-text mb-auto pt-2">Etiam elit turpis, egestas quis quam at, mattis lobortis nisl. Lorem ipsum dolor, consectetur adipiscing elit. Nam in pharetra urna. Donec diam erat, condimentum eget vehicula mollis... </p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>26. Marec, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/author.png" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Predlog Odloka o proračunu Občine Dobrova – Polhov Gradec za leto 2022 <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>8.7</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Storitve</b>
+                  <p class="card-text mb-auto pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in pharetra urna. Etiam elit turpis, egestas quis quam at, mattis lobortis nisl. Donec diam erat, condimentum eget vehicula mollis... </p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>22. Marec, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+      </div>
+
+      <div class="row row-xl-12 mb-2">
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/avatar.jpg" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Aenean ac magna non nunc suscipit tempor a non massa - Nullam auctor sit amet lectus sollicitudin tempus <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>4.8</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Kultura</b>
+                  <p class="card-text mb-auto pt-2">Donec diam erat. Nam in pharetra urna. Etiam elit turpis, egestas quis quam at, mattis lobortis nisl. Legestas quis quam at, condimentum eget vehicula mollis, etiam elit turpis lobortis nisl... </p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>16. Marec, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/author3.jpg" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Mattis lobortis nisl Legestas quis quam at - Fusce placerat at quam sed gravida, Etiam ac odio in augue pellentesque commodo <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>5.2</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Turizem</b>
+                  <p class="card-text mb-auto pt-2">Mattis lobortis nisl. Nam in pharetra urna. Etiam elit turpis, egestas quis quam at, mattis lobortis nisl. Legestas quis quam at, condimentum eget vehicula mollis, etiam elit Nam in pharetra urna... </p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>07. Marec, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+      </div>
+
+      <div class="row row-xl-12 mb-2">
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/author.png" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Condimentum eget vehicula mollis est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>6.3</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Društva in javne storitve</b>
+                  <p class="card-text mb-auto pt-2">Consectetur, adipisci elit velit. Etiam elit turpis, egestas quis quam at, mattis lobortis nisl. Legestas quis quam at, condimentum eget vehicula mollis, etiam elit Nam in pharetra urna... </p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>29. April, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+         <article class="col col-xl-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+               <div class="card-body d-flex flex-column align-items-start">
+                  <div class="row mb-0">
+                     <div class="col col-xl-1">
+                        <img src="img/testmonial/author4.jpg" class="rounded-circle" alt="Cinque Terre" width="55px" height="55px">
+                     </div>
+                     <div class="col col-xl-11">
+                        <h3>Nullam justo lacus, psum quia dolor sit amet iaculis quis nisl at, semper pretium justo. <b><i class="fa fa-check-circle" aria-hidden="true"></i></b> <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>7.9</b></h3>
+                     </div>
+                  </div>
+                  <b class="d-inline-block">Zdravje in lepota</b>
+                  <p class="card-text mb-auto pt-2">In a pharetra urna. Suspendisse in augue a ligula blandit bibendum. Pellentesque elementum lorem in scelerisque efficitur. Maecenas tincidunt viverra massa, semper pretium justo elit...</p>
+                  <div class="row w-100">
+                     <div class="col col-xl-6 pt-2 text-muted ">
+                        <p>27. April, 2022</p>
+                     </div>
+                     <div class="col col-xl-6 d-flex justify-content-end">
+                        <a class="read_more pt-2 align-content-end" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+      </div>
+
+      <div class="row row-xl-12 pt-4 pb-3">
+         <nav class="col col-xl-12 blog-pagination justify-content-center d-flex pt-0 mt-0">
+            <ul class="pagination">
+               <li class="page-item">
+                  <a href="#" class="page-link" aria-label="Previous">
+                     <i class="ti-angle-double-left"></i>
+                  </a>
+               </li>
+               <li class="page-item active">
+                  <a href="#" class="page-link">1</a>
+               </li>
+               <li class="page-item">
+                  <a href="#" class="page-link">...</a>
+               </li>
+               <li class="page-item">
+                  <a href="#" class="page-link">4</a>
+               </li>
+               <li class="page-item">
+                  <a href="#" class="page-link" aria-label="Next">
+                     <i class="ti-angle-double-right"></i>
+                  </a>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</section>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nov predlog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Naslov predloga:</label>
+                        <input type="text" class="form-control is-invalid" id="recipient-name">
+                        <div class="invalid-feedback">
+                            Polje je obvezno
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Predlog:</label>
+                        <textarea class="form-control is-invalid" id="message-text"></textarea>
+                        <div class="invalid-feedback">
+                            Polje je obvezno
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Razred organizacije:</label>
+                        <select class="form-select form-control is-invalid" aria-label="Default select example">
+                            <option selected disabled>--Izberi organizacijo--</option>
+                            <option value="1">Kultura</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Polje je obvezno
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+                <button type="button" class="btn btn-primary">Shrani</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer_start  -->
+<footer class="footer footer_bg_1 pt-3">
+   <div class="footer_top pt-5 pb-0">
+      <div class="container">
+         <div class="row">
+            <div class="col-xl-6 col-md-4 col-lg-3">
+               <div class="footer_widget ">
+                  <h3 class="footer_title">
+                     O nas
+                  </h3>
+                  <p>Aplikacija SLObčina omogoča boljši pregled nad delovanjem posamezne občine ter izboljšava komunikacijo med občani in občinskimi organi s pregledom dogodkov, pregledom predlogov projektov občanov za izboljšavo življenja v občini, pregledom novic ter fotogalerije</p>
+                  <div class="footer_logo">
+                     <a href="#" class="h1 text-light">SLObčina</a>
+                  </div>
+               </div>
+            </div>
+            <div class="row col-xl-6 col-md-4 col-lg-3">
+               <div class="footer_widget col col-xl-6">
+                  <h3 class="footer_title">
+                     Kontaktne informacije
+                  </h3>
+                  <p>Naslov: Ljubljana, Slovenia</p>
+                  <ul>
+                     <li><a href="#">Telefon : +44 563 986 4785</a></li>
+                     <li><a href="#">E-naslov : tech@slobcina.com</a></li>
+                  </ul>
+               </div>
+               <div class="footer_widget col col-xl-6">
+                  <h3 class="footer_title">
+                     Pomembne povezave
+                  </h3>
+                  <ul>
+                     <li><a href="#">O občini</a></li>
+                     <li><a href="#">Ekipa razvijalcev</a></li>
+                     <li><a href="#">Novice</a></li>
+                     <li><a href="#">Predlogi</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="copy-right_text">
+      <div class="container">
+         <div class="footer_border"></div>
+         <div class="row">
+            <div class="col-lg-8">
+               <p class="copy_right">
+               <p>
+                  &copy;<script>document.write(new Date().getFullYear());</script> Vse pravice pridržane | Zasnova, izvedba in vzdrževanje: N. V., E. B., K. J., M. Š., A. Z.</p>
+               </p>
+            </div>
+            <div class="col-lg-4">
+               <div class="socail_links">
+                  <ul>
+                     <li>
+                        <a href="#">
+                           <i class="ti-facebook"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <i class="fa fa-twitter"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <i class="fa fa-linkedin"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>
+<!-- footer_end  -->
+
+
+<!-- JS here -->
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/ajax-form.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/scrollIt.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/nice-select.min.js"></script>
+<script src="js/jquery.slicknav.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/gijgo.min.js"></script>
+<script src="js/slick.min.js"></script>
+
+
+
+<!--contact js-->
+<script src="js/contact.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/mail-script.js"></script>
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

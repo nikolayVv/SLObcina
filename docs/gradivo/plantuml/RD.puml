@@ -1,0 +1,51 @@
+@startuml RD
+skinparam class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam backgroundcolor transparent
+hide circle
+
+Class "Razred 1" as R1 {
+  -atribut1: float
+}
+
+Class "Razred 2" as R2 {
+  -atribut2: string
+  -atribut3: string
+  --
+  +metoda1(param1: int): boolean
+}
+
+Class "Razred 3" as R3 {
+  -atribut4: datetime
+  -atribut5: string
+  --
+  +metoda2(param2: string): float
+  +metoda3(): float
+}
+
+Class "Razred 4" as R4 {
+  -atribut6: float
+  -atribut7: string
+  --
+  +metoda4(): float
+  +metoda5(param3: datetime): float
+}
+
+Class "Razred 5" as R5 {
+  -atribut8: float
+  -atribut9: string
+  --
+  +metoda6(): float
+  +metoda7(): float
+  +metoda8(param4: int): boolean
+}
+
+R3 "1 " o-- "1..* " R4: " sestavljen\niz >"
+R2 "0..* " -- "1 " R5
+R1 --|> R3
+R2 --|> R3
+
+@enduml

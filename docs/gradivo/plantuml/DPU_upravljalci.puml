@@ -1,0 +1,68 @@
+@startuml upravljalci
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+
+left to right direction
+
+actor "Upravljalec predlogov\n(organizacija)" as UpravljalecPredlogov
+actor "Upravljalec dogodkov" as UpravljalecDogodkov
+actor "Upravljalec novic" as UpravljalecNovic
+actor "Pomožni akter" as PomozniAkter
+actor "Google Calendar" as GoogleCalendar
+actor "Novice" as lokalneNovice
+
+rectangle "SLObčina" {
+  PomozniAkter --down-> (Prijava uporabnika [PU2])
+  PomozniAkter -down-> (Odjava uporabnika [PU3])
+  PomozniAkter -down-> (Urejanje uporabniškega profila [PU4])
+  PomozniAkter -down-> (Ogled novice [PU8])
+  PomozniAkter -down-> (Ogled predloga projekta [PU11])
+  PomozniAkter -down-> (Ogled podatkov občine [PU13])
+  PomozniAkter -down--> (Ogled uporabniškega profila [PU15])
+  PomozniAkter -down-> (Ogled fotografije [PU19])
+  PomozniAkter -down-> (Ogled dogodka [PU23])
+  PomozniAkter -down-> (Filtriranje predlogov projektov [PU25])
+  PomozniAkter -down-> (Izbira občine [PU26])
+
+  UpravljalecPredlogov -down-> (Urejanje predloga projekta [PU12])
+  
+  UpravljalecNovic --down-> (Dodajanje novice [PU6])
+  UpravljalecNovic -down-> (Urejanje novice [PU7])
+  UpravljalecNovic -down-> (Brisanje novice [PU9])
+   
+  UpravljalecDogodkov --down-> (Urejanje dogodka [PU20])
+  UpravljalecDogodkov -down-> (Brisanje dogodka [PU21])
+  UpravljalecDogodkov -down-> (Dodajanje dogodka [PU22])
+  UpravljalecDogodkov -down-> (Sinhronizacija dogodkov z aplikacijo Google Calendar [PU22])
+   
+  GoogleCalendar <-up- (Sinhronizacija dogodkov z aplikacijo Google Calendar [PU22])
+  GoogleCalendar <-up- (Ogled dogodka [PU23])
+  GoogleCalendar <-up- (Urejanje dogodka [PU20])
+  GoogleCalendar <-up- (Brisanje dogodka [PU21])
+  GoogleCalendar <-up- (Dodajanje dogodka [PU22])
+
+  lokalneNovice -up-> (Dodajanje novice [PU6])
+  lokalneNovice -up-> (Urejanje novice [PU7])
+  lokalneNovice -up-> (Ogled novice [PU8])
+  lokalneNovice -up-> (Brisanje novice [PU9])
+  
+  UpravljalecDogodkov -down-|> PomozniAkter
+  UpravljalecNovic -down-|> PomozniAkter
+  UpravljalecPredlogov -down-|> PomozniAkter
+ 
+}
+@enduml

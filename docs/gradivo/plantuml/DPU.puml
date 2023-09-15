@@ -1,0 +1,37 @@
+@startuml DPU
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+
+left to right direction
+
+actor "Uporabnik 1" AS U1
+actor "Uporabnik 2" AS U2
+actor "Zunanji\nsistem 1" AS S1
+
+rectangle "Vaš sistem" {
+  usecase "Primer\nuporabe 1" AS PU1
+  usecase "Primer\nuporabe 2" AS PU2
+  usecase "Primer\nuporabe 3" AS PU3
+  usecase "Primer\nuporabe 4" AS PU4
+  usecase "Primer\nuporabe 5" AS PU5
+}
+
+U2 -left-|> U1
+
+U1 -> (PU1)
+U2 --> (PU2)
+(PU4) -down-> S1
+
+(PU3) .up.> (PU1) : extend
+(PU5) ..> (PU4) : include
+(PU5) -right-|> (PU2)
+
+@enduml

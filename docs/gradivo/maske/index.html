@@ -1,0 +1,589 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>SLObčina</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html" class="h1 text-light">SLObčina</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="#">Uporabniki</a></li>
+                                        <li><a href="#">O občini</a></li>
+                                        <li><a href="#">Predlogi</a></li>
+                                        <li><a href="#">Novice</a></li>
+                                        <li><a href="#" class="text-muted">Občina Dobrova - Polhov Gradec <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="facilites.html">Facilities</a></li>
+                                                <li><a href="property.html">Properties</a></li>
+                                                <li><a href="elements.html">elements</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                            <div class="social_wrap d-flex align-items-center justify-content-end m-0">
+                                <div class="login_text">
+                                    <a href="myProfile.html" class="btn btn-danger btn-lg"><i class="fa fa-user" aria-hidden="true"></i> Moj profil</a>
+                                </div>
+                                <div class="login_text">
+                                    <a href="#" class="btn btn-outline-danger ">Odjava</a>
+                                </div>
+<!--                                <div class="login_text">-->
+<!--                                    <a href="myProfile.html" class="btn btn-outline-danger">Prijava</a>-->
+<!--                                </div>-->
+<!--                                <div class="login_text">-->
+<!--                                    <a href="#" class="btn btn-danger btn-lg">Registracija</a>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="slider_active owl-carousel">
+            <div class="single_slider pt-5 pb-5  d-flex align-items-center slider_bg_1 overlay">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-5 col-md-4">
+                            <div class="slider_text">
+                                <h3>Dogodki</h3>
+                                <span></span>
+                                <p class="mt-0 mb-0 row"><!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-danger col-xl-6">
+                                        <i class="fa fa-google" aria-hidden="true"></i> Sinhroniziraj
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger col-xl-6" data-toggle="modal" data-target="#exampleModalCenter">
+                                         Dodaj dogodek
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-md-8 pl-5">
+                            <div class="">
+                                <img src="img/calendar.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- Modal -->
+<!--    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLongTitle">Dogodek</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <h3>ZBIRANJE NEVARNIH ODPADKOV IN MANJŠE ODPADNE ELEKTRIČNE TER ELEKTRONSKE OPREME</h3>-->
+<!--                    <p>JP VOKA SNAGA obvešča, da bo zbiranje nevarnih gospodinjskih odpadkov v občini Dobrova - Polhov Gradec potekalo v ponedeljek, 28. 3. 2022, od 9. do 12. ure v Polhovem Gradcu (na parkirišču pri trgovini) in od 13. do 16. ure na Dobrovi (pri gasilskemu domu Dobrova). <br/>-->
+
+<!--                        V premično zbiralnico lahko občani prinesete nevarne odpadke iz gospodinjstev (motorna in jedilna olja, akumulatorje in baterije, čistilna sredstva, barve, lake in topila, zdravila in pesticide) in manjšo odpadno električno in elektronsko opremo do velikosti sesalca (kartuše/tonerje, monitorje in računalniške pripomočke, elektronske medije, male kuhinjske aparate, električna orodja, odslužene telefone, žarnice in plinske sijalke, električne igrače). Občanom bo pri oddajanju odpadkov v pomoč strokovno usposobljen sodelavec, ki izdaja tudi potrdila o količini in vrsti oddanih odpadkov.</p>-->
+<!--                    <br/>-->
+<!--                    <p><b><i class="fa fa-map-marker" aria-hidden="true"></i> Naslov: </b>Občina Dobrova - Polhov Gradec (Polhov Gradec in Dobrova)</p>-->
+<!--                    <p><b><i class="fa fa-clock-o" aria-hidden="true"></i> Termin: </b>24.03.2022 ob 09.00</p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Izbriši</button>-->
+<!--                    <button type="button" class="btn btn-danger">Uredi</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Uredi dogodek</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="text" class="form-control is-invalid" hidden/>
+<!--                        <div class="invalid-feedback">-->
+<!--                            Vsa polja so obvezna-->
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Ime dogodka:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Spočilo:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Naslov:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Termin</label>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+                    <button type="button" class="btn btn-primary">Shrani</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- our_latest_news_area_Start  -->
+    <div class="our_latest_news_area pt-4 pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-80">
+                        <h3>Zadnje novice</h3>
+                        <div class="devider">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="news_active owl-carousel">
+                        <div class="single_news">
+                            <div class="thumb">
+                                <a href="#">
+                                    <img src="img/1.png" class="image-news" alt="">
+                                </a>
+                            </div>
+                            <div class="news_info d-flex">
+                                <div class="date">
+                                    <p><span>29</span> <br>
+                                        Mar</p>
+                                </div>
+                                <div class="news_meta">
+                                    <a href="#"><h3>OBVESTILO: Zapora ceste Žerovnik–Osredek–Topol, odsek Žerovnik–Osredek: 26. in 27. marec 2022</h3></a>
+                                    <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_news">
+                            <div class="thumb">
+                                <a href="#">
+                                    <img src="img/2.png" class="image-news" alt="">
+                                </a>
+                            </div>
+                            <div class="news_info d-flex">
+                                <div class="date">
+                                    <p><span>23</span> <br>
+                                        Mar</p>
+                                </div>
+                                <div class="news_meta">
+                                    <a href="#">
+                                        <h3>STORITEV E-OSKRBA ZA VARNO BIVANJE STAREJŠIH, INVALIDOV IN KRONIČNIH BOLNIKOV</h3>
+                                    </a>
+                                    <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_news">
+                            <div class="thumb">
+                                <a href="#">
+                                    <img src="img/3.jpg" class="image-news" alt="" />
+                                </a>
+                            </div>
+                            <div class="news_info d-flex">
+                                <div class="date">
+                                    <p><span>21</span> <br>
+                                        Mar</p>
+                                </div>
+                                <div class="news_meta">
+                                    <a href="#">
+                                        <h3>Motena oskrba s pitno vodo - vodovod Brezje</h3>
+                                    </a>
+                                    <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_news">
+                            <div class="thumb">
+                                <a href="#">
+                                    <img src="img/4.jpg" class="image-news" alt="">
+                                </a>
+                            </div>
+                            <div class="news_info d-flex">
+                                <div class="date">
+                                    <p><span>12</span> <br>
+                                        Mar</p>
+                                </div>
+                                <div class="news_meta">
+                                    <a href="#">
+                                        <h3>CESTA POLHOV GRADEC–DOBROVA SE PRENAVLJA NA DVEH NOVIH ODSEKIH</h3>
+                                    </a>
+                                    <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-4">
+            <div class="col-lg-12">
+                <div class="section_title text-center mb-80">
+                    <button class="btn btn-lg btn-outline-secondary justify-content-center"><i class="fa fa-angle-double-down"></i> Prikaži več novic <i class="fa fa-angle-double-down"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- our_latest_news_area_end  -->
+
+    <!-- testimonial_area  -->
+    <div class="testimonial_area pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-80">
+                        <h3>Najbolj priljubljeni predlogi</h3>
+                        <div class="devider">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-5">
+                <div class="col-xl-12">
+                    <div class="testmonial_active owl-carousel">
+                        <div class="single_carousel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9">
+                                    <div class="single_testmonial text-center">
+                                        <div class="author_thumb">
+                                            <img src="img/testmonial/author.png" alt="">
+                                        </div>
+                                        <div class="testmonial_author">
+                                            <h3>Petra Novak</h3>
+                                            <span><i class="fa fa-star" aria-hidden="true"></i> 8.7</span>
+                                        </div>
+                                        <p>"Predlog Odloka o proračunu Občine Dobrova – Polhov Gradec za leto 2022"</p>
+                                        <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_carousel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9">
+                                    <div class="single_testmonial text-center">
+                                        <div class="author_thumb">
+                                            <img src="img/testmonial/author.png" alt="">
+                                        </div>
+                                        <div class="testmonial_author">
+                                            <h3>Pija Banič</h3>
+                                            <span><i class="fa fa-star" aria-hidden="true"></i> 7.3</span>
+                                        </div>
+                                        <p>"Predlog Odloka o proračunu Občine Dobrova – Polhov Gradec za leto 2022"</p>
+                                        <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_carousel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9">
+                                    <div class="single_testmonial text-center">
+                                        <div class="author_thumb">
+                                            <img src="img/testmonial/author2.png" alt="">
+                                        </div>
+                                        <div class="testmonial_author">
+                                            <h3>Luka Bajec</h3>
+                                            <span><i class="fa fa-star" aria-hidden="true"></i> 6.6</span>
+                                        </div>
+                                        <p>"Predlog Odloka o proračunu Občine Dobrova – Polhov Gradec za leto 2022"</p>
+                                        <a class="read_more" href="#">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-4">
+            <div class="col-lg-12">
+                <div class="section_title text-center mb-80">
+                    <button class="btn btn-lg btn-outline-secondary justify-content-center"><i class="fa fa-angle-double-down"></i> Prikaži več predlogov <i class="fa fa-angle-double-down"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /testimonial_area  -->
+
+    <div class="about_area bg-light pt-5 pb-5">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-80">
+                        <h3>Naša ekipa razvijalcev</h3>
+                        <div class="devider">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature text-center">
+                        <div class="icon">
+                            <img src="img/avatar1.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                        </div>
+                        <h3 class="pt-3">Klemen Jerman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature text-center">
+                        <div class="icon">
+                            <img src="img/avatar5.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                        </div>
+                        <h3 class="pt-3">Miha Širovnik</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature text-center">
+                        <div class="icon">
+                            <img src="img/avatar3.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                        </div>
+                        <h3 class="pt-3">Andraž Zrimšek</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single_feature text-center">
+                        <div class="icon">
+                            <img src="img/avatar4.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                        </div>
+                        <h3 class="pt-3">Nikolay Vasilev</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="single_feature text-center">
+                        <div class="icon">
+                            <img src="img/avatar2.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                        </div>
+                        <h3 class="pt-3">Eva Bizilj</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer_start  -->
+    <footer class="footer footer_bg_1 pt-3">
+        <div class="footer_top pt-5 pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-4 col-lg-3">
+                        <div class="footer_widget ">
+                            <h3 class="footer_title">
+                                O nas
+                            </h3>
+                            <p>Aplikacija SLObčina omogoča boljši pregled nad delovanjem posamezne občine ter izboljšava komunikacijo med občani in občinskimi organi s pregledom dogodkov, pregledom predlogov projektov občanov za izboljšavo življenja v občini, pregledom novic ter fotogalerije</p>
+                            <div class="footer_logo">
+                                <a href="#" class="h1 text-light">SLObčina</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-xl-6 col-md-4 col-lg-3">
+                        <div class="footer_widget col col-xl-6">
+                            <h3 class="footer_title">
+                                Kontaktne informacije
+                            </h3>
+                            <p>Naslov: Ljubljana, Slovenia</p>
+                            <ul>
+                                <li><a href="#">Telefon : +44 563 986 4785</a></li>
+                                <li><a href="#">E-naslov : tech@slobcina.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_widget col col-xl-6">
+                            <h3 class="footer_title">
+                                Pomembne povezave
+                            </h3>
+                            <ul>
+                                <li><a href="#">O občini</a></li>
+                                <li><a href="#">Ekipa razvijalcev</a></li>
+                                <li><a href="#">Novice</a></li>
+                                <li><a href="#">Predlogi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <p class="copy_right">
+                            <p>
+  &copy;<script>document.write(new Date().getFullYear());</script> Vse pravice pridržane | Zasnova, izvedba in vzdrževanje: N. V., E. B., K. J., M. Š., A. Z.</p>
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="socail_links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer_end  -->
+
+
+    <!-- JS here -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/scrollIt.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/nice-select.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/gijgo.min.js"></script>
+    <script src="js/slick.min.js"></script>
+   
+
+    
+    <!--contact js-->
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

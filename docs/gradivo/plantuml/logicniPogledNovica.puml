@@ -1,0 +1,43 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 150
+skinparam ranksep 398
+left to right direction
+ 
+agent KrmilnikNovica #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikNovica"]
+}
+}}
+]
+ 
+agent SeznamNovic #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMSeznamNovic"]
+}
+}}
+]
+
+
+agent Novica #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Novica"]
+}
+}}
+]
+
+agent Brskalnik #808080
+
+KrmilnikNovica --> SeznamNovic : Zahteva za prikaz seznama \lnovic
+SeznamNovic --> KrmilnikNovica : Zahteva za dodajanje novice, \lbrisanje in urejanje novice
+
+Novica -right-> KrmilnikNovica :  Vrni vse novice, \lvrni urejeno novico, \lvrni novico z izbranim ID-jem
+KrmilnikNovica -right-> Novica: Dodajanje novice, \lurejanje novice, \lbrisanje novice
+SeznamNovic --> Brskalnik
+@enduml

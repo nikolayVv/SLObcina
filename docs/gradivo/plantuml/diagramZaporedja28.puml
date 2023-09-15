@@ -1,0 +1,55 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Upravljalec predlogov" as Prijavljen <<actor>>
+participant "ZMPodatkiPredlog" as PodatkiPredlog <<boundary>>  #lightBlue
+participant "ZMSeznamPredlogov" as SeznamPredlogov <<boundary>>  #lightBlue
+participant "KrmilnikPredloga" as PKrmilnik <<control>> #lightGray
+participant “PredlogProjekta” as Predloga <<entity>> #lightYellow
+
+Prijavljen -> PKrmilnik: 1. seznamPredlogov(req, res)
+activate PKrmilnik
+PKrmilnik -> Predloga: 2. vrniVsi(req, res)
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in seznam vseh predlogov
+deactivate Predloga
+SeznamPredlogov <-- PKrmilnik: // preusmeri na seznam vseh predlogov
+deactivate PKrmilnik
+activate SeznamPredlogov
+SeznamPredlogov -> PKrmilnik: 3. prikaziPredlogProjekta(req, res)
+activate PKrmilnik
+PKrmilnik -> Predloga: 4. vrniPredlogProjektaID(req, res)
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in predlog projekta,\n ki mu pripada izbran ID
+deactivate Predloga
+PodatkiPredlog <-- PKrmilnik: // preusmeri na obrazec s podatki o izbranem predlogu
+deactivate PKrmilnik
+deactivate SeznamPredlogov
+activate PodatkiPredlog
+PodatkiPredlog -> PodatkiPredlog: 5. odpriObrazec()
+activate PodatkiPredlog
+PodatkiPredlog -> PKrmilnik: 6. shraniPredlogProjekta(req, res)
+activate PKrmilnik
+PKrmilnik -> PKrmilnik: 7. validacijaAtributov(body)
+activate PKrmilnik
+deactivate PKrmilnik
+PKrmilnik -> Predloga: 8. urediPredlogProjektaID(req, res)
+activate Predloga
+PKrmilnik <-- Predloga: // sporočilo OK in urejen predlog projekta
+deactivate Predloga
+SeznamPredlogov <- PKrmilnik: // preusmeri na posodobljen seznam predlogov
+deactivate PKrmilnik
+deactivate PodatkiPredlog
+deactivate PodatkiPredlog
+activate SeznamPredlogov
+@enduml

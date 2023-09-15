@@ -1,0 +1,86 @@
+@startuml
+usecase usecase #Gray  [
+
+  <b>BRSKALNIK
+
+]
+
+card krmilniki #lightGray [
+<b>KRMILNIKI
+
+====
+KrmilnikValidacija
+----
+KrmilnikRegistracija
+----
+KrmilnikPrijava
+----
+KrmilnikUporabnik
+----
+KrmilnikPredloga
+----
+KrmilnikNovica
+----
+KrmilnikObčina
+----
+KrmilnikDogodek
+]
+
+card zunanjiVmesniki #lightGreen [
+<b>SISTEMSKI VMESNIKI
+
+====
+SVGoogleCalendar API
+]
+
+card pogledi #lightBlue [
+<b>POGLEDI
+
+====
+ZMRegistracijskiObrazec
+----
+ZMDomačaStran
+----
+ZMPrijavniObrazec
+----
+ZMUporabniškiProfil
+----
+ZMSeznamUporabnikov
+----
+ZMSeznamPredlogov
+----
+ZMSeznamNovic
+----
+ZMPodatkiPredlog
+----
+ZMObčina
+]
+
+
+card modeli #lightYellow [
+<b>MODELI
+
+====
+Uporabnik
+----
+Ocena
+----
+Novica
+----
+Slika
+----
+Občina
+----
+Organizacija
+----
+PredlogProjekta
+]
+usecase -down-> krmilniki
+pogledi -up-> usecase
+krmilniki -right-> pogledi
+pogledi -left-> krmilniki
+krmilniki -down-> modeli
+modeli--> krmilniki
+zunanjiVmesniki -right-> krmilniki
+krmilniki -left-> zunanjiVmesniki
+@enduml

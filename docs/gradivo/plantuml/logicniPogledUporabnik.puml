@@ -1,0 +1,66 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 450
+skinparam ranksep 450
+left to right direction
+ 
+agent KrmilnikUporabnik #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikUporabnik"]
+}
+}}
+]
+ 
+agent UporabniskiProfil #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMUporabniškiProfil"]
+}
+}}
+]
+
+agent SeznamUporabnikov #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMSeznamUporabnikov"]
+}
+}}
+]
+
+agent Uporabnik #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Uporabnik"]
+}
+}}
+]
+
+agent Organizacija #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Organizacija"]
+}
+}}
+]
+
+agent Brskalnik #808080
+
+KrmilnikUporabnik --> UporabniskiProfil : Zahteva za prikaz uporabniškega profila
+UporabniskiProfil --> KrmilnikUporabnik :  Zahteva po urejanju profila, zahteva po brisanju profila
+SeznamUporabnikov --> KrmilnikUporabnik
+
+KrmilnikUporabnik --> SeznamUporabnikov :  Zahteva za prikaz seznama \luporabnikov
+UporabniskiProfil --> Brskalnik
+SeznamUporabnikov --> Brskalnik
+
+KrmilnikUporabnik --> Uporabnik: Preverjanje vseh vnešenih podatkov, \lzahteva za brisanje uporabnika, zahteva za podatke uporabnika
+Uporabnik --> KrmilnikUporabnik : Vrni posodobljenega uporabnika, vrni uporabnika z izbranim ID-jem
+
+Uporabnik <|-- Organizacija
+@enduml

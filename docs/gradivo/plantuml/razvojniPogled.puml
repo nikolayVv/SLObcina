@@ -1,0 +1,111 @@
+@startuml
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam ArrowColor black
+
+skinparam nodesep 120
+skinparam ranksep 120
+
+skinparam component {
+  backgroundcolor #87d9ff
+  bordercolor #gray
+} 
+
+skinparam interface {
+  backgroundcolor #e8f5fd
+  bordercolor #5FB8EC
+}
+
+interface "Prikaz novice" as PrikazNovice 
+interface "Prikaz domače strani" as PrikazDomaceStrani 
+interface "Prikaz seznama novic" as PrikazSeznamaNovic 
+interface "Dodajanje novice" as DodajanjeNovice
+interface "Izbira novice iz seznama" as IzbiraNoviceIzSeznama
+interface "Prikaz podatkov o občini" as PrikazPodatkovOObcini
+interface "Prikaz \lpredlogov projektov" as PrikazPredlogovProjektov
+interface "Prikaz \lpredloga projekta" as PrikazPredlogaProjekta
+interface "Izbira \lpredloga projekta" as IzbiraPredlogaProjekta
+interface "Dodajanje predloga projekta" as DodajanjePredlogaProjekta
+interface "Prikaz profila" as PrikazProfila
+
+component "Profil" as Profil #dbf0ff  {
+}
+
+component "Domača stran" as DomacaStran #dbf0ff  {
+  component Koledar #white
+  component "Zadnje novice" as ZadnjeNovice #white
+  component "Najbolj priljubljeni predlogi" as NajboljPriljubljeniPredlogi #white
+}
+
+component "Relacijska podatkovna baza" as RelacijskaPodatkovnaBaza #ffe0e1  {
+  folder Uporabnik1 as "Uporabnik" #white
+  folder Novica1 as "Novica" #white
+  folder PredlogProjekta1 as "Predlog projekta" #white
+  folder Obcina1 as "Občina" #white
+  folder Organizacija1 as "Organizacija" #white
+}
+
+component "Dokumentna podatkovna baza" as DokumentnaPodatkovnaBaza #ffe0e1  {
+  folder Slika #white
+}
+
+component "Navigacijska vrstica" as NavVrstica #dbf0ff  {
+}
+
+component "Seznam novic" as SeznamNovic #dbf0ff  {
+}
+
+component "Novica" as Novica #dbf0ff  {
+}
+
+component "Občina" as Obcina #dbf0ff  {
+  component Fotogalerija #white
+  component Organizacija #white
+}
+
+component "Seznam predlogov" as SeznamPredlogov #dbf0ff  {
+}
+
+component "Predlog" as Predlog #dbf0ff  {
+}
+
+component "Avtentikacija" as Avtentikacija #dbf0ff  {
+  component Registracija #white
+  component Prijava #white
+}
+
+DomacaStran -left- PrikazNovice
+PrikazNovice -right- Novica
+DomacaStran -down- PrikazDomaceStrani
+PrikazDomaceStrani -down- NavVrstica
+NavVrstica -down- PrikazSeznamaNovic
+PrikazSeznamaNovic -down- SeznamNovic
+SeznamNovic -down- DodajanjeNovice
+DodajanjeNovice -down- Novica
+SeznamNovic -down- IzbiraNoviceIzSeznama
+IzbiraNoviceIzSeznama -down- Novica
+NavVrstica -down- PrikazPodatkovOObcini
+PrikazPodatkovOObcini -down- Obcina
+NavVrstica -down- PrikazPredlogovProjektov
+PrikazPredlogovProjektov -down- SeznamPredlogov
+
+DomacaStran -right- PrikazPredlogaProjekta
+PrikazPredlogaProjekta -right- Predlog
+Predlog -left- IzbiraPredlogaProjekta
+IzbiraPredlogaProjekta -left- SeznamPredlogov
+SeznamPredlogov -right- DodajanjePredlogaProjekta
+DodajanjePredlogaProjekta -up- Predlog
+NavVrstica -right- PrikazProfila
+PrikazProfila -right- Profil
+
+Novica -[dashed]-> RelacijskaPodatkovnaBaza
+DokumentnaPodatkovnaBaza -[dashed]-> Obcina
+Obcina -[dashed]-> RelacijskaPodatkovnaBaza
+Predlog -[dashed]-> RelacijskaPodatkovnaBaza
+Profil -[dashed]-> RelacijskaPodatkovnaBaza
+Avtentikacija -[dashed]-> RelacijskaPodatkovnaBaza
+Avtentikacija -[dashed]-> NavVrstica
+DomacaStran -[dashed]-> Avtentikacija
+
+Registracija -[dashed]-> Prijava
+@enduml

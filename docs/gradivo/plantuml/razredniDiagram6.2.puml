@@ -1,0 +1,54 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "ZMPrijavniObrazec" as ZMPrijavniObrazec <<boundary>> #lightBlue {
+  +zacniPrijavo(): void
+}
+
+Class "KrmilnikPrijava" as KrmilnikPrijava <<control>> #lightGray {
+  +prijava(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +odjava(Object req, Object res): void
+}
+
+Class "Uporabnik" as Uporabnik <<entity>> #lightYellow {
+  -id: string
+  -ime: string
+  -priimek: string
+  -hashGeslo: string
+  -key: string
+  -slikaUporabnika: Slika[]
+  -email: string
+  -telefonskaStevilka: string
+  -rojstniDatum: date
+  -naslov: string
+  -mesto: string
+  -obcina: Obcina[]
+  -opis: string
+  -registriranOd: date
+  -vloga: string
+  -predlogi: Predlog[]
+  -novice: Novica[]
+  -organizacije: Organizacija[]
+  --
+  +dodajUporabnik(Object req, Object res): void
+  +vrniUporabnik(Object req, Object res): void
+  +preveriAtribute(Object akcija): boolean
+  +vrniVsi(Object req, Object res): void
+  +vrniUporabnikID(Object req, Object res): void
+  +urediUporabnikID(Object req, Object res): void
+  +izbrisiUporabnikID(Object req, Object res): void
+}
+
+ZMPrijavniObrazec "1..1 " -right-> "     1..1" KrmilnikPrijava
+KrmilnikPrijava "0..1  " -right-> " 0..*" Uporabnik
+@enduml

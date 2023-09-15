@@ -1,0 +1,31 @@
+@startuml DA
+
+skinparam defaultTextAlignment center
+skinparam backgroundcolor transparent
+skinparam shadowing false
+skinparam conditionStyle diamond
+
+<style>
+activityDiagram {
+  backgroundColor white
+  lineColor #5FB8EC
+  arrow {
+    lineColor black
+  }
+  diamond {
+    lineColor black
+  }
+}
+</style>
+
+start
+
+repeat :Aktivnost 1;
+  :Aktivnost 2;
+  :Aktivnost 3;
+backward:Aktivnost 4;
+repeat while (Pogoj 1?)
+
+stop
+
+@enduml

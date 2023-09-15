@@ -1,0 +1,42 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam linetype ortho
+skinparam backgroundcolor transparent
+skinparam nodesep 100
+skinparam ranksep 100
+hide circle
+
+Class "ZMSeznamNovic" as ZMSeznamNovic <<boundary>> #lightBlue {
+  +odpriObrazecZaDodajanjeNovic(): void
+}
+
+Class "KrmilnikNovica" as KrmilnikNovica <<control>> #lightGray {
+  +seznamNovic(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +shraniNovica(Object req, Object res): void
+  +prikaziNovica(string id): void
+  +izbrisiNovica(string id): void
+  +vrniZadnjeNovice(Object req, Object res): void
+}
+
+Class "Novica" as Novica <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -vsebina: string
+  -datumObjave: date
+  --
+  +vrniVsi(): void
+  +vrniNovicaID(Object req, Object res): void
+  +urediNovicaID(Object req, Object res): void
+  +izbrisiNovicaID(Object req, Object res): void
+  +dodajNovica(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+ZMSeznamNovic "1..1 " -right-> " 1..1" KrmilnikNovica
+KrmilnikNovica "0..1 " -right-> " 0..*" Novica
+@enduml

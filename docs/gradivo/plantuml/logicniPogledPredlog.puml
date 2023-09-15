@@ -1,0 +1,54 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 400
+skinparam ranksep 400
+left to right direction
+ 
+agent KrmilnikPredloga #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikPredloga"]
+}
+}}
+]
+ 
+agent SeznamPredlogov #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMSeznamPredlogov"]
+}
+}}
+]
+
+agent PodatkiPredloga #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMPodatkiPredlog"]
+}
+}}
+]
+
+agent PredlogProjekta #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="PredlogProjekta"]
+}
+}}
+]
+
+agent Brskalnik #808080
+
+KrmilnikPredloga --> SeznamPredlogov : Zahteva za prikaz seznama predlogov projektov
+SeznamPredlogov --> KrmilnikPredloga : Zahteva za dodajanje predloga projekta
+KrmilnikPredloga --> PodatkiPredloga: Zahteva za prikaz\lobrazca s podatki predloga
+PodatkiPredloga --> KrmilnikPredloga :  Zahteva po urejanju\lpredloga projekta
+SeznamPredlogov --> Brskalnik
+PodatkiPredloga --> Brskalnik
+
+KrmilnikPredloga --> PredlogProjekta: Dodajanje predloga projekta, urejanje predloga projekta
+PredlogProjekta --> KrmilnikPredloga : Vrni vse predloge projektov, \lvrni urejene predloge projektov, vrni predlog z izbranim ID-jem
+@enduml

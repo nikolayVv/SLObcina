@@ -1,0 +1,37 @@
+@startuml DS
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam arrowColor black
+skinparam state {
+  BackgroundColor white
+  BorderColor #5FB8EC
+  StartColor #5FB8EC
+  EndColor #5FB8EC
+}
+
+state "Stanje 1" as S1
+S1: do: akcija 1
+
+state "Stanje 2" as S2
+S2: do: akcija 3
+
+state "Stanje 3" as S3
+S3: do: akcija 5
+
+state "Stanje 4" as S4
+S4: do: akcija 11
+
+[*] -> S1
+
+S1 --> S2: akcija 2
+S1 --> S3: akcija 4
+S3 --> S2: akcija 6
+S2 --> S3: akcija 7
+S3 --> S3: akcija 8
+S3 --> S4: akcija 9
+S4 -> S1: akcija 10
+
+S4 -> [*]
+
+@enduml

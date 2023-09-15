@@ -1,0 +1,58 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 350
+skinparam ranksep 467
+left to right direction
+ 
+agent KrmilnikAvtentikacije #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikAvtentikacija"]
+}
+}}
+]
+ 
+agent RegistracijskiObrazec #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMRegistracijskiObrazec"]
+}
+}}
+]
+
+agent PrijavniObrazec #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMPrijavniObrazec"]
+}
+}}
+]
+
+
+agent Brskalnik #808080
+
+
+
+agent Uporabnik #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Uporabnik"]
+}
+}}
+]
+
+KrmilnikAvtentikacije --> RegistracijskiObrazec :  Zahteva za prikaz obrazca za registracijo 
+RegistracijskiObrazec --> KrmilnikAvtentikacije :  Zahteva po izvedbi registracije
+KrmilnikAvtentikacije --> PrijavniObrazec :  Zahteva za prikaz obrazca za prijavo
+PrijavniObrazec --> KrmilnikAvtentikacije : Zahteva po izvedbi prijave 
+
+RegistracijskiObrazec --> Brskalnik
+PrijavniObrazec --> Brskalnik
+
+KrmilnikAvtentikacije --> Uporabnik: Dodajanje uporabnika, preverjanje vnešenih podatkov
+Uporabnik --> KrmilnikAvtentikacije : Dodaj uporabnika, vrni uporabnika
+@enduml

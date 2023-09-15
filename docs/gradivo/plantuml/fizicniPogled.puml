@@ -1,0 +1,35 @@
+@startuml
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+
+skinparam ArrowColor black
+skinparam artifact {
+  backgroundcolor #e8f5fd
+  bordercolor #5FB8EC
+}
+skinparam node {
+  bordercolor #5FB8EC
+}
+left to right direction
+node "Odjemalski\nračunalnik" as Odjemalec <<device>> {
+  node "Spletni\nbrskalnik" as Brskalnik <<device>> {
+  }
+}
+node "Podatkovna\nbaza 1" as PB <<device>> {
+  artifact "Relacijska\npodatkovna\nbaza" AS RelPB <<artifact>>
+}
+node "Podatkovna\nbaza 2" as PB2 <<device>> {
+  artifact "Dokumentna\npodatkovna\nbaza" AS DocPB <<artifact>>
+}
+node "Spletni\nstrežnik" as SpletniStreznik <<device>> {
+  artifact "index.html" as Index <<artifact>>
+}
+node "REST API\nstrežnik" as ApiStreznik <<device>> {
+  artifact "index.js" as Index2 <<artifact>>
+}
+
+ApiStreznik -up- PB : vrata 1433
+ApiStreznik -right- PB2 : vrata 1434
+SpletniStreznik -up- ApiStreznik : vrata 3000
+SpletniStreznik -down- Odjemalec : vrata 80
+@enduml

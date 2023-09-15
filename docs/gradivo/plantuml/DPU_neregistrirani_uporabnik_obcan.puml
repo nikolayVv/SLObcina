@@ -1,0 +1,57 @@
+@startuml neregistrirani_uporabnik_obcan
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+
+left to right direction
+
+actor "Neregistrirani uporabnik" as NeregistraniUporabnik
+actor "Občan" as Obcan
+actor "Pomožni akter" as PomozniAkter
+actor "Google Calendar" as GoogleCalendar
+actor "Novice" as lokalneNovice
+
+rectangle "SLObčina" {
+
+  PomozniAkter -down--> (Ogled novice [PU8])
+  PomozniAkter -down--> (Ogled predloga projekta [PU11])
+  PomozniAkter -down--> (Ogled podatkov občine [PU13])
+  PomozniAkter -down--> (Ogled fotografije [PU19])
+  PomozniAkter -down--> (Ogled dogodka [PU23])
+  PomozniAkter -down--> (Filtriranje predlogov projektov [PU25])
+  PomozniAkter -down--> (Izbira občine [PU26])
+
+  NeregistraniUporabnik -down--> (Registracija uporabnika [PU1])
+  
+  Obcan -down--> (Prijava uporabnika [PU2])
+  Obcan -down--> (Odjava uporabnika [PU3])
+  Obcan -down--> (Urejanje uporabniškega profila [PU4])
+  Obcan -down--> (Dodajanje predloga projekta [PU10])
+  Obcan -down--> (Ogled uporabniškega profila [PU15])
+  Obcan -down--> (Dodajanje fotografije [PU16])
+  Obcan -down--> (Ocenjevanje predloga projekta [PU24])
+  Obcan -down--> (Sinhronizacija dogodkov z aplikacijo Google Calendar [PU27])
+  
+  GoogleCalendar <---up- (Ogled dogodka [PU23])
+  GoogleCalendar <---up- (Sinhronizacija dogodkov z aplikacijo Google Calendar [PU27])
+ 
+  lokalneNovice -up---> (Ogled novice [PU8])
+  
+  Obcan -up-|> PomozniAkter
+  NeregistraniUporabnik -up-|> PomozniAkter
+  
+}
+@enduml

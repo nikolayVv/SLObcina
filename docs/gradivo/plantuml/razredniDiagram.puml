@@ -1,0 +1,275 @@
+@startuml
+skinparam Class {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam backgroundcolor transparent
+hide circle
+skinparam backgroundcolor transparent
+skinparam nodesep 70
+skinparam ranksep 45
+
+Class "Uporabnik" as Uporabnik <<entity>> #lightGray {
+  -id: string
+  -ime: string
+  -priimek: string
+  -hashGeslo: string
+  -key: string
+  -slikaUporabnika: Slika[]
+  -email: string
+  -telefonskaStevilka: string
+  -rojstniDatum: date
+  -naslov: string
+  -mesto: string
+  -obcina: Obcina[]
+  -opis: string
+  -registriranOd: date
+  -vloga: string
+  -predlogi: Predlog[]
+  -novice: Novica[]
+  -organizacije: Organizacija[]
+  --
+  +dodajUporabnik(Object req, Object res): void
+  +vrniUporabnik(Object req, Object res): void
+  +preveriAtribute(Object akcija): boolean
+  +vrniVsi(Object req, Object res): void
+  +vrniUporabnikID(Object req, Object res): void
+  +urediUporabnikID(Object req, Object res): void
+  +izbrisiUporabnikID(Object req, Object res): void
+}
+
+Class "ZMRegistracijskiObrazec" as ZMRegistracijskiObrazec <<boundary>> #F6DDCC {
+  +zacniRegistracijo(): void
+}
+
+Class "ZMDomačaStran" as ZMDomacaStran <<boundary>> #lightGreen {
+  +preusmeriNaDomacoStran(): void
+  +prikazDomacaStran(): void
+}
+
+Class "ZMPrijavniObrazec" as ZMPrijavniObrazec <<boundary>> #F6DDCC {
+  +zacniPrijavo(): void
+}
+
+Class "ZMUporabniškiProfil" as ZMUporabniskiProfil <<boundary>> #lightBlue {
+  +odpriObrazecZaUrejanjeProfila(): void
+}
+
+Class "ZMSeznamUporabnikov" as ZMSeznamUporabnikov <<boundary>> #lightBlue {
+}
+
+Class "ZMSeznamPredlogov" as ZMSeznamPredlogov <<boundary>> #lightGreen {
+  +odpriObrazecZaDodajanjePredlogaProjekta(): void
+}
+
+Class "ZMSeznamNovic" as ZMSeznamNovic <<boundary>> #lightGreen {
+  +odpriObrazecZaDodajanjeNovic(): void
+}
+
+Class "ZMPodatkiPredlog" as ZMPodatkiPredlog <<boundary>> #lightBlue {
+ +odpriObrazec(): void
+}
+
+Class "ZMObčina" as ZMObcina <<boundary>> #lightGreen {
+ +odpriObrazecZaUrejanjePodatkovObcine(): void
+ +odpriObrazecZaDodajanjeFotografije(): void
+}
+
+Class "SVGoogleCalendar API" as SVGoogleCalendarAPI <<boundary>> #lightBlue {
+ +vrniSeznamDogodkovIzKoledarja(): void
+ +prikaziDogodekIzKoledarja(): void
+ +urediDogodekVKoledarju(): void
+}
+
+Class "KrmilnikValidacija" as KrmilnikAvtentikacija <<control>> #BB8FCE {
+  +validacijaAtributov(Object body): boolean
+}
+
+Class "KrmilnikRegistracija" as KrmilnikRegistracija <<control>> #BB8FCE {
+  +registracija(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+}
+
+Class "KrmilnikPrijava" as KrmilnikPrijava <<control>> #BB8FCE {
+  +prijava(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +odjava(Object req, Object res): void
+}
+
+Class "KrmilnikUporabnik" as KrmilnikUporabnik <<control>> #yellow {
+  +seznamUporabnikov(Object req, Object res): void
+  +urediProfil(Object req, Object res): void
+  +izbrisiProfil(Object req, Object res): void
+  +prikaziProfil(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+}
+
+Class "KrmilnikPredloga" as KrmilnikPredloga <<control>> #yellow {
+  +seznamPredlogov(Object req, Object res): void
+  +prikaziPredlogProjekta(Object req, Object res): void
+  +shraniPredlogProjekta(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +spremeniStatusPredlogProjekta(Object req, Object res): void
+  +vrniNajPriljubljeni(Object req, Object res): void
+  +oceniPredlogProjekta(Object req, Object res): void
+  +filtrirajSeznamPredlogovProjektov(Object req, Object res): void
+  +razvrstiSeznamPredlogovProjektov(Predlog[] predlogi, string akcija): void
+  +razvrsti(Object req, Object res): void
+}
+
+Class "KrmilnikNovica" as KrmilnikNovica <<control>> #yellow {
+  +seznamNovic(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +shraniNovica(Object req, Object res): void
+  +prikaziNovica(string id): void
+  +izbrisiNovica(string id): void
+  +vrniZadnjeNovice(Object req, Object res): void
+}
+
+Class "KrmilnikObčina" as KrmilnikObcina <<control>> #yellow {
+  +prikazPodatkiObcine(Object req, Object res): void
+  +shraniPodatkeObcine(Object req, Object res): void
+  +validacijaAtributov(Object body): boolean
+  +dodajFotografijo(Object req, Object res): void
+  +izbrisiFotografijo(Object req, Object res): void
+  +prikaziSeznamObcin(Object req, Object res): void
+  +spremeniObcina(Object req, Object res): void
+}
+
+Class "KrmilnikDogodek" as KrmilnikDogodek <<control>> #yellow {
+  +dodajDogodek(Object req, Object res): void
+  +urediDogodek(Object req, Object res): void
+  +izbrisiDogodek(string id): void
+  +validacijaAtributov(Object body): boolean
+  +prikaziDogodek(Object req, Object res): void
+  +vrniSeznamDogodkov(Object req, Object res): void
+  +sihroniziraj(Object req, Object res): void
+}
+
+
+Class "Ocena" as Ocena <<entity>> #lightYellow {
+  -id: string
+  -uporabnikId: string
+  -ocena: double
+}
+
+Class "Novica" as Novica <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -vsebina: string
+  -datumObjave: date
+  --
+  +vrniVsi(): void
+  +vrniNovicaID(Object req, Object res): void
+  +urediNovicaID(Object req, Object res): void
+  +izbrisiNovicaID(Object req, Object res): void
+  +dodajNovica(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+Class "Slika" as Slika <<entity>> #lightYellow {
+  -id: string
+  -slika: string
+}
+
+Class "Občina" as Obcina <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -fotogalerija: Slika[]
+  -opis: string
+  -organizacija: Uporabnik[]
+  --
+  +vrniObcinaID(Object req, Object res): void
+  +urediObcinaID(Object req, Object res): void
+}
+
+
+Class "Organizacija" as Organizacija <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -razred: string
+}
+
+Class "PredlogProjekta" as PredlogProjekta <<entity>> #lightYellow {
+  -id: string
+  -naslov: string
+  -sporocilo: string
+  -razred: string
+  -jePotrjen: boolean
+  -datum: date
+  -ocene: Ocena[]
+  --
+  +vrniVsi(Object req, Object res): void
+  +vrniPredlogProjektaID(Object req, Object res): void
+  +urediPredlogProjektaID(Object req, Object res): void
+  +dodajPredlogProjekta(): void
+  +vrniVsiFilter(Object req, Object res): void
+}
+
+ZMObcina "1..1 " -down-> " 1..1" KrmilnikUporabnik
+
+ZMRegistracijskiObrazec "1..1 " -down-> "     1..1" KrmilnikRegistracija
+
+KrmilnikRegistracija "0..1  " -down-> " 0..*" Uporabnik
+
+ZMPrijavniObrazec "1..1 " -right-> "     1..1" ZMRegistracijskiObrazec
+
+ZMPodatkiPredlog "1..1 " -down-> "     1..1" KrmilnikUporabnik
+
+ZMSeznamPredlogov "1..1 " -right-> " 1..1" KrmilnikPredloga
+
+ZMPrijavniObrazec "1..1 " -right-> "     1..1" KrmilnikPrijava
+KrmilnikPrijava "0..1  " -right-> " 0..*" Uporabnik
+
+ZMRegistracijskiObrazec "1..1 " -right-> "     1..1" ZMPrijavniObrazec
+
+
+KrmilnikPrijava "1..1 " -right-> "     1..1" ZMDomacaStran
+KrmilnikPredloga "0..1 " -down-> " 0..*" PredlogProjekta
+
+
+ZMUporabniskiProfil "1..1 " -down-> " 1..1" KrmilnikUporabnik
+
+ZMSeznamNovic "1..1 " -right-> " 1..1" KrmilnikNovica
+KrmilnikNovica "0..1 " -right-> " 0..*" Novica
+
+ 
+KrmilnikObcina "0..1 " -down-> " 0..*" Obcina
+
+ZMObcina "1..1 " -right-> " 1..1" KrmilnikObcina
+
+ZMSeznamUporabnikov "1..1 " -right-> " 1..1" KrmilnikUporabnik
+
+
+KrmilnikUporabnik "0..1 " -down-> " 0..*" Uporabnik
+
+ZMDomacaStran "1..1 " -down-> " 1..1" KrmilnikDogodek
+ZMDomacaStran "1..1 " -down-> " 1..1" KrmilnikNovica
+ZMDomacaStran "1..1 " -down-> " 1..1" KrmilnikPredloga
+
+
+KrmilnikDogodek "1..1 " -down-> " 0..1" SVGoogleCalendarAPI
+
+ZMPodatkiPredlog "1..1 " -down-> " 1..1" KrmilnikPredloga
+
+KrmilnikRegistracija -up-|> KrmilnikAvtentikacija
+KrmilnikPrijava -up-|> KrmilnikAvtentikacija
+KrmilnikUporabnik -down-|> KrmilnikAvtentikacija
+KrmilnikPredloga -up-|> KrmilnikAvtentikacija
+KrmilnikNovica -down-|> KrmilnikAvtentikacija
+KrmilnikDogodek -up-|> KrmilnikAvtentikacija
+KrmilnikObcina -up-|> KrmilnikAvtentikacija
+
+Obcina "1..1" -up- "0..*" Uporabnik
+Obcina "1..1" -up- "0..*" Slika
+Uporabnik "1..1" -right- "1..1" Slika
+Uporabnik "0..*" -up- "1..1" Obcina
+Uporabnik "1..*" -down- "0..*" PredlogProjekta
+Uporabnik "1..*" -right- "0..*" Novica
+Uporabnik "1..*" -up- "0..*" Organizacija
+Uporabnik "0..*" -up- "0..*" Ocena
+Slika "0..1" -up- "0..1" Novica
+Slika "0..1" -up- "0..1" Organizacija
+Slika "0..1" -up- "0..1" PredlogProjekta
+@enduml

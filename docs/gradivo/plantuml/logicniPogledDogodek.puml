@@ -1,0 +1,43 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 400
+skinparam ranksep 400
+left to right direction
+ 
+agent KrmilnikDogodek #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikDogodek"]
+}
+}}
+]
+ 
+agent ZMDomacaStran #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMDomačaStran"]
+}
+}}
+]
+
+agent SVGoogleCalendarAPI #lightGreen [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGreen style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="SVGoogleCalendar API"]
+}
+}}
+]
+
+
+agent Brskalnik #808080
+
+KrmilnikDogodek --> ZMDomacaStran : Zahteva za prikaz modalnih oken \l za dodajanje in urejanje dogodka
+ZMDomacaStran --> KrmilnikDogodek : Zahteva za vnos podatkov dogodka
+KrmilnikDogodek --> SVGoogleCalendarAPI : Zahteva za sihronizacijo koledarja, \l dodajanje dogodka, \l urejanje dogodka in brisanje dogodka
+SVGoogleCalendarAPI --> KrmilnikDogodek : Seznam dogodkov
+
+ZMDomacaStran --> Brskalnik
+@enduml

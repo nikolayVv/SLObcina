@@ -1,0 +1,26 @@
+@startuml
+hide footbox
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+
+actor "Občan\nAdministrator\nUpravljalec predlogov (organizacija)\nUpravljalec novic\nUpravljalec dogodkov" as Prijavljen <<actor>>
+participant "KrmilnikPrijava" as Krmilnik <<control>> #lightGray
+participant "ZMDomačaStran" as DomacaStran <<boundary>> #lightBlue
+
+
+Prijavljen -> Krmilnik: 1. odjava(req, res)
+activate Krmilnik
+Krmilnik -> DomacaStran: 2. preusmeriNaDomacoStran()
+deactivate Krmilnik
+activate DomacaStran
+
+deactivate Krmilnik
+@enduml

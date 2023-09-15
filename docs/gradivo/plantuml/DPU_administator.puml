@@ -1,0 +1,47 @@
+@startuml admin
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+
+left to right direction
+
+actor "Administrator" as Administrator
+actor "Google Calendar" as GoogleCalendar
+actor "Novice" as lokalneNovice
+
+rectangle "SLObčina" {
+  Administrator -down---> (Prijava uporabnika [PU2])
+  Administrator -down---> (Odjava uporabnika [PU3])
+  Administrator -down---> (Urejanje uporabniškega profila [PU4])
+  Administrator -down---> (Brisanje uporabniškega profila [PU5])
+  Administrator -down---> (Ogled novice [PU8])
+  Administrator -down---> (Ogled predloga projekta [PU11])
+  Administrator -down---> (Ogled podatkov občine [PU13])
+  Administrator -down---> (Urejanje podatkov občine [PU14])
+  Administrator -down---> (Ogled uporabniškega profila [PU15])
+  Administrator -down---> (Dodajanje fotografije [PU16])
+  Administrator -down---> (Prikaz seznama uporabnikov [PU17])
+  Administrator -down---> (Brisanje fotografije [PU18])
+  Administrator -down---> (Ogled fotografije [PU19])
+  Administrator -down---> (Ogled dogodka [PU23])
+  Administrator -down---> (Filtriranje predlogov projektov [PU25])
+  Administrator -down---> (Izbira občine [PU26])
+  
+  GoogleCalendar <---up- (Ogled dogodka [PU23])
+
+  lokalneNovice -up---> (Ogled novice [PU8])
+}
+@enduml

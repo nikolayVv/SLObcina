@@ -1,0 +1,63 @@
+@startuml
+skinparam backgroundColor transparent
+hide footbox
+
+<style>
+ganttDiagram {
+  timeline {
+    LineColor #f2f2f2
+    FontColor gray
+  }
+  task {
+    BackgroundColor #e8f5fd
+    LineColor #5FB8EC
+  }
+  arrow {
+    LineColor #5FB8EC
+  }
+  milestone {
+    BackgroundColor #e8f5fd
+    LineColor #5FB8EC
+  }
+  closed {
+    BackgroundColor #f2f2f2
+    FontColor lightgray
+  }
+}
+</style>
+
+project starts the 21st of March 2022 and ends the 20th of May 2022
+saturdays are closed
+sundays are closed
+2022/04/27 is closed
+2022/05/02 is closed
+
+[A1] starts 2022-03-21 and lasts 43 days
+[A2] starts 2022-03-21 and ends 2022-04-01 and is colored in red
+
+[B1] starts at [A2]'s end and ends 2022-04-22
+[B2] starts at [A2]'s end and ends 2022-04-08
+[B3] starts at [A2]'s end and ends 2022-04-15 and is colored in red
+[B4] starts at [B3]'s end and ends 2022-04-29 and is colored in red
+[B5] starts at [A2]'s end and ends 2022-04-08
+
+[C1] starts at [B1]'s end and ends 2022-05-06
+[C2] starts at [B3]'s end and ends 2022-04-26
+[C3] starts 5 days after [B3]'s end and ends 2022-04-29
+[C4] starts at [B4]'s end and ends 2022-05-10 and is colored in red
+[C5] starts 23 days after [B5]'s end and ends 2022-05-10
+[C6] starts at [B2]'s end and ends 2022-05-06
+[C7] starts at [C4]'s end and ends 2022-05-12 and is colored in red
+[M1 / C1 & C2 & C3 & C5 & C6 & C7] as [M1] happens at [C1]'s end
+[M1] happens at [C2]'s end
+[M1] happens at [C3]'s end
+[M1] happens at [C5]'s end
+[M1] happens at [C6]'s end
+[M1] happens at [C7]'s end
+[C8] starts at [M1]'s end and ends 2022-05-16 and is colored in red
+[C9] starts at [C6]'s end and ends 2022-05-13
+[C10] starts 1 day after [C8]'s end and ends 2022-05-18 and is colored in red
+[C11] starts at [C10]'s end and ends 2022-05-19 and is colored in red
+[D1] starts at [C11]'s end and ends 2022-05-20 and is colored in red
+[D2] starts 4 days after [C7]'s end and ends 2022-05-19
+@enduml

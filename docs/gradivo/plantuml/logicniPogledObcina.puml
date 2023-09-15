@@ -1,0 +1,53 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 400
+skinparam ranksep 400
+left to right direction
+ 
+agent KrmilnikObcina #lightGray [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightGray style=filled margin=0 height=4 width=2 shape=plaintext fontname="SansSerif" fontsize=11 label="KrmilnikObčina"]
+}
+}}
+]
+ 
+agent StranObcina #lightBlue [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightBlue style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="ZMObčina"]
+}
+}}
+]
+
+agent Obcina #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Občina"]
+}
+}}
+]
+
+agent Slika #lightYellow [
+{{
+digraph G {
+graph [pad=0]
+n [fillcolor=lightYellow style=filled margin=0 height=1.0 width=1.0 shape=plaintext fontname="SansSerif" fontsize=11 label="Slika"]
+}
+}}
+]
+
+agent Brskalnik #808080
+
+KrmilnikObcina --> StranObcina : Zahteva za prikaz strani občine
+StranObcina --> KrmilnikObcina : Zahteva za urejanju podatkov, zahteva za dodajanje fotografije
+Obcina --> KrmilnikObcina : Občina z izbranim ID, \lspremenjena občina
+KrmilnikObcina --> Obcina : Spremenjeni podatki občine
+
+KrmilnikObcina --> Slika : Dodaj fotografijo, izbriši fotografijo
+
+StranObcina --> Brskalnik
+@enduml
