@@ -1,0 +1,76 @@
+<!--profile area start-->
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div *ngIf="currentPredlog.predlog" class="card w-100 bg-light" style="box-shadow: 23px 23px 23px 12px;">
+        <div class="card-body  pr-0">
+            <div class="row">
+                <div class="col col-xl-9 pt-3">
+                    <h1><b *ngIf="currentPredlog.predlog.jePotrjen === 1"><i class="fa fa-check-circle" aria-hidden="true"></i></b> {{currentPredlog.predlog.naslov}} <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>{{currentPredlog.ocena.toFixed(2)}}</b> </h1>
+                    <h2><b class="d-inline-block">{{currentPredlog.predlog.razred}}</b></h2>
+                </div>
+                <div class="col col-xl-3  pr-0">
+                  <img *ngIf="slikaUporabnika" [src]="slikaUporabnika" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                  <img *ngIf="!slikaUporabnika" src="./../../../assets/images/avatarDefault.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+                    <span class="name mt-3"><h3>{{currentPredlog.avtor.ime}} {{currentPredlog.avtor.priimek}}, {{currentPredlog.avtor.rojstniDatum | calculateAge}}</h3></span>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3">
+                <p class="card-text">{{currentPredlog.predlog.sporocilo}}</p>
+            </div>
+            <div class="row pl-3 pr-3">
+              <b class="text-secondary"><br/>{{currentPredlog.predlog.datum | date: "EEEE, M/d/yy, HH:mm":"CEST":"sl"}}</b>
+            </div>
+        </div>
+        <form (ngSubmit)="posiljanjePodatkov()" class="card-footer">
+            <div class="row">
+                <div class="col col-xl-6">
+                    <button *ngIf="uporabnik?.vloga === 'upravljalecPredlogov' && currentPredlog.predlog.jePotrjen === 0" type="button" class="btn btn-danger" (click)="aktiviraj()">Aktiviraj</button>
+                    <a routerLink="/profil/{{currentPredlog.avtor.idUporabnik}}" class="btn btn-outline-dark ml-3">Odpri profil</a>
+                </div>
+                <div class="col col-xl-6 d-flex justify-content-end">
+                  <select *ngIf="uporabnik?.vloga === 'obcan' && uporabnik?.id !== currentPredlog.predlog.idUporabnik" name="ocena" class="form-select mr-2" aria-label="select example" [(ngModel)]="novaOcena.ocena">
+                      <option [selected]="!currOcena[0] || (currOcena[0] && currOcena[0].ocena === 1) ? 'selected' : ''" value="1">Ocena 1</option>
+                      <option value="2">Ocena 2</option>
+                      <option value="3">Ocena 3</option>
+                      <option value="4">Ocena 4</option>
+                      <option value="5">Ocena 5</option>
+                      <option value="6">Ocena 6</option>
+                      <option value="7">Ocena 7</option>
+                      <option value="8">Ocena 8</option>
+                      <option value="9">Ocena 9</option>
+                      <option value="10">Ocena 10</option>
+                  </select>
+                  <button *ngIf="uporabnik?.vloga === 'obcan' && uporabnik?.id !== currentPredlog.predlog.idUporabnik" type="submit" class="btn btn-dark pr-3">Oceni</button>
+                  <button *ngIf="uporabnik?.vloga === 'upravljalecPredlogov'" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                      Uredi
+                  </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--profile area end-->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div *ngIf="currentPredlog.predlog" (ngSubmit)="urediPredlog()" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Uredi predloga</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group">
+                      <label for="razred" class="col-form-label">Razred organizacije:</label>
+                      <select class="form-select" id="razred" name="razred" aria-label="Default select example" [(ngModel)]="novRazred">
+                        <option *ngFor="let org of organizacije" [value]="org.razred">{{org.razred}}</option>
+                      </select>
+                  </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="izbrisi()">Izbriši</button>
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="urediPredlog()">Uredi</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center pt-5 pb-5">
+    <div class="col-md-6 col-sm-12 shadow-lg pt-5 p-3 bg-light " style="box-shadow: 23px 23px 23px 12px;">
+      <div class="text-center">
+        <h3>Registracija</h3>
+      </div>
+      <form (ngSubmit)="posiljanjePodatkov()" autocomplete="off">
+        <div class="p-4">
+          <div *ngIf="napakaNaObrazcu" class="form-group">
+            <div class="alert alert-danger p-2 mt-4" role="alert">
+              <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+            </div>
+          </div>
+          <p class="fieldRequired">Polja z * so obvezna</p>
+          <div class="input-group mb-3">
+            <input name="ime" type="text" class="form-control" placeholder="Ime*" style="margin-right: 5%" required [(ngModel)]="novUporabnik.ime">
+
+            <input name="priimek" type="text" class="form-control" placeholder="Priimek*" required [(ngModel)]="novUporabnik.priimek">
+          </div>
+          <div class="input-group mb-3">
+            <input name="datumRojstva" type="text" class="form-control" placeholder="Datum rojstva*" required [(ngModel)]="novUporabnik.datumRojstva"> <!--vzel ven onfocus="(this.type='date')"-->
+          </div>
+          <div class="input-group mb-3">
+            <input name="email" type="email" class="form-control" placeholder="E-naslov*" required [(ngModel)]="novUporabnik.email">
+          </div>
+          <div class="input-group mb-3">
+            <input name="geslo" type="password" class="form-control"  placeholder="Geslo*" required [(ngModel)]="novUporabnik.geslo">
+          </div>
+          <div class="input-group mb-3">
+            <input name="ponoviGeslo" type="password" class="form-control" placeholder="Ponovi geslo*" required [(ngModel)]="novUporabnik.ponoviGeslo">
+          </div>
+          <div *ngIf="obcine.length !== 0" class="input-group mb-3">
+            <select name="obcina" id="obcine" class="form-control" required [(ngModel)]="novUporabnik.idObcina">
+              <option disabled selected value="">Občina*</option>
+              <option *ngFor="let obcina of obcine" [value]="obcina.idObcina">{{ obcina.naslov }}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <input name="mesto" type="text" class="form-control" placeholder="Mesto" [(ngModel)]="novUporabnik.mesto">
+          </div>
+          <div class="input-group mb-3">
+            <input name="naslov" type="text" class="form-control" placeholder="Naslov" [(ngModel)]="novUporabnik.naslov">
+          </div>
+          <div class="input-group mb-3">
+            <input name="telefon" type="text" class="form-control" placeholder="Telefon" [(ngModel)]="novUporabnik.telefonskaStevilka">
+          </div>
+
+          <div class="d-flex justify-content-center pt-4">
+            <button class="btn btn-primary text-center mt-2" type="submit">Registracija</button>
+          </div>
+          <p class="text-center mt-3">Že imate profil? <a routerLink="/prijava">Prijava</a>
+          </p>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

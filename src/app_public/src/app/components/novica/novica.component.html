@@ -1,0 +1,74 @@
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div class="card w-100 bg-light" style="box-shadow: 23px 23px 23px 12px;">
+        <img *ngIf="!slikaNovice" class="card-img-top" src="/assets/images/newsDefault.png" height="350px"/>
+        <img *ngIf="slikaNovice" class="card-img-top" [src]="slikaNovice" height="350px"/>
+        <div class="card-body">
+            <div class="row">
+                <div class="col col-xl-8 pt-2">
+                    <h1> {{currentNovica.naslov}} </h1>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3 pt-3">
+                <p class="card-text mb-auto pt-2">{{currentNovica.vsebina}}</p>
+            </div>
+
+          <div class="row  pt-5">
+            <div class="d-flex justify-content-start col col-xl-6">
+              <div class="blog_item_date">
+                <h4 class="text-secondary">{{currentNovica.datumobjave | date: "EEEE, M/d/yy, HH:mm":"CEST":"sl" }}</h4>
+              </div>
+            </div>
+            <div *ngIf="uporabnik && (uporabnik.vloga === 'upravljalecNovic' || currentNovica.uporabnik.toString() === uporabnik.id)" class="d-flex justify-content-end col col-xl-6">
+              <button type="button" class="btn btn-outline-danger" (click)="izbrisiNovico()">Izbriši</button>
+              <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#exampleModalCenter">Uredi</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Nov predlog</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div *ngIf="napakaNaObrazcu" class="form-group">
+              <div class="alert alert-danger p-2 mt-4" role="alert">
+                <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Naslov:</label>
+              <input type="text" class="form-control" id="recipient-name" [(ngModel)]="novaNovica.naslov" name="naslov">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Vsebina:</label>
+              <textarea class="form-control" id="message-text" [(ngModel)]="novaNovica.vsebina" name="vsebina"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="input-group mb-3 p-4">
+          <div class="d-flex flex-column align-items-center text-center">
+            <div *ngIf="isImageAdded">
+              <img [src]="cardImageBase64" class="fit-picture" width="150" height="150"/>
+            </div>
+            <div *ngIf="!isImageAdded">
+              <img src="/assets/images/newsDefault.png" class="fit-picture" width="150" height="150" />
+            </div>
+          </div>
+          <input type="file" class="form-control" id="changePhoto" name="profilePhotoChange"
+                 accept="image/png, image/jpeg, image/jpg" value="Izberi sliko" (change)="fileChangeEvent($event)" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+          <button type="button" class="btn btn-primary" (click)="dodajNovico()">Shrani</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

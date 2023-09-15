@@ -1,0 +1,24 @@
+<form>
+  <div class="input-group mb-3 p-4">
+    <div class="d-flex flex-column align-items-center text-center">
+      <ng-container *ngIf="isImageSaved; else elseTemplate">
+        <img [src]="cardImageBase64" class="fit-picture" width="150" height="150"/>
+      </ng-container>
+      <ng-template #elseTemplate>
+
+        <img src="./../../../assets/images/avatarDefault.png" class="img-responsive" width="150" height="150">
+      </ng-template>
+    </div>
+    <input type="file" class="form-control" id="changePhoto" name="profilePhotoChange"
+           accept="image/png, image/jpeg, image/jpg" value="Izberi sliko" (change)="fileChangeEvent($event)" >
+  </div>
+  <div>
+
+    <button type="button" class="btn btn-primary" id="removeEditImage" (click)="shraniSliko()">Shrani sliko</button>
+  </div>
+
+  <img src="" id="editImage" class="rounded-circle" alt="profile picture edit" width="200" height="200"
+       hidden>
+
+  <input type="text" name="editImageURL" id="editImageURL" hidden>
+</form>

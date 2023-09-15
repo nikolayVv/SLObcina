@@ -1,0 +1,229 @@
+<!-- slider_area_start -->
+<div class="slider_area">
+  <div class="slider_active owl-carousel">
+    <div class="single_slider pt-5 pb-5  d-flex align-items-center slider_bg_1 overlay">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-5 col-md-4 ">
+            <div class="slider_text   bg-dark">
+              <h3>Dogodki</h3>
+              <span class="ml-3"></span>
+              <p *ngIf="uporabnik" class="mt-0 mb-0 row"><!-- Button trigger modal -->
+                <button *ngIf="uporabnik.vloga === 'upravljalecDogodkov' || uporabnik.vloga === 'obcan'"type="button" class="btn btn-outline-danger col-xl-6">
+                  <i class="fa fa-google" aria-hidden="true"></i> Sinhroniziraj
+                </button>
+                <button *ngIf="uporabnik.vloga === 'upravljalecDogodkov'" type="button" class="btn btn-outline-danger col-xl-6" data-toggle="modal" data-target="#exampleModalCenter">
+                  Dodaj dogodek
+                </button>
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-7 col-md-8 pl-5">
+            <div class="">
+              <img src="/assets/images/calendar.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Uredi dogodek</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="text" class="form-control is-invalid" hidden/>
+          <!--                        <div class="invalid-feedback">-->
+          <!--                            Vsa polja so obvezna-->
+          <!--                        </div>-->
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Ime dogodka:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Spočilo:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Naslov:</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Termin</label>
+            <input type="datetime-local" class="form-control">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+        <button type="button" class="btn btn-primary">Shrani</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- our_latest_news_area_Start  -->
+<div *ngIf="novice" class="our_latest_news_area pt-4 pb-0 ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section_title text-center mb-80">
+          <h3>Zadnje novice</h3>
+          <div class="devider">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div  class="row m-3">
+      <div class="col-lg-12">
+        <div class="row">
+          <div *ngFor="let novica of novice" class="col col-xl-6 mb-3 ">
+            <div  class="single_news m-3 pl-3">
+              <div class="thumb">
+                <a routerLink="novice/{{novica.idnovica}}">
+                  <img *ngIf="slikeNovic[novica.idnovica]" [src]="slikeNovic[novica.idnovica]" class="image-news" alt="">
+                  <img *ngIf="!slikeNovic[novica.idnovica]" src="/assets/images/newsDefault.png" class="image-news" alt="">
+                </a>
+              </div>
+              <div class="news_info d-flex">
+                <div class="date">
+                  <p><span>{{novica.datumobjave | date: 'd.'}}</span> <br>{{novica.datumobjave | date: "MMMM":"CEST":"sl"}}</p>
+                </div>
+                <div class="news_meta">
+                  <a routerLink="novice/{{novica.idnovica}}"><h3>{{novica.naslov}}</h3></a>
+                  <a class="read_more" routerLink="novice/{{novica.idnovica}}">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4">
+    <div class="col-lg-12">
+      <div class="section_title text-center mb-80">
+        <a routerLink="novice" class="btn btn-lg btn-outline-secondary justify-content-center"><i class="fa fa-solid fa-angle-double-down"></i> Prikaži več novic <i class="fa fa-angle-double-down"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="predloge" class="testimonial_area pb-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section_title text-center mb-80">
+          <h3>Najbolj priljubljeni predlogi</h3>
+          <div class="devider">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col-xl-12">
+        <div class="row">
+          <div *ngFor="let predloga of predloge" class="col col-xl-4">
+            <div  class="single_carousel">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <div class="single_testmonial text-center">
+                    <div>
+                      <img class="card-img rounded-circle" *ngIf="slikePredlogov[predloga.predlog.idPredlogProjekta]" [src]="slikePredlogov[predloga.predlog.idPredlogProjekta]" alt="">
+                      <img class="card-img rounded-circle" *ngIf="!slikePredlogov[predloga.predlog.idPredlogProjekta]" src="/assets/images/avatarDefault.png" alt="">
+                    </div>
+                    <div class="testmonial_author">
+                      <h3>{{predloga.avtor.ime + " " + predloga.avtor.priimek}}</h3>
+                      <span><i class="fa fa-star" aria-hidden="true"></i>{{predloga.ocena}}</span>
+                    </div>
+                    <p>"{{predloga.predlog.naslov}}"</p>
+                    <a class="read_more" routerLink="predlog/{{predloga.predlog.idPredlogProjekta}}">Preberi več <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4">
+    <div class="col-lg-12">
+      <div class="section_title text-center mb-80">
+        <a routerLink="predlogi" class="btn btn-lg btn-outline-secondary justify-content-center"><i class="fa fa-angle-double-down"></i> Prikaži več predlogov <i class="fa fa-angle-double-down"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about_area bg-light pt-5 pb-5">
+  <div class="container pb-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section_title text-center mb-80">
+          <h3>Naša ekipa razvijalcev</h3>
+          <div class="devider">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let entiteta of vsebina.ekipa1" class="col-lg-4 col-md-6">
+        <div class="single_feature text-center">
+          <div class="icon" [innerHTML]="entiteta.slika"></div>
+          <h3 class="pt-3">{{entiteta.ime}}</h3>
+          <p>{{entiteta.opis}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div *ngFor="let entiteta of vsebina.ekipa2" class="col-lg-6 col-md-6">
+        <div class="single_feature text-center">
+          <div class="icon" [innerHTML]="entiteta.slika"></div>
+          <h3 class="pt-3">{{entiteta.ime}}</h3>
+          <p>{{entiteta.opis}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

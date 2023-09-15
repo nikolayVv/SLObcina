@@ -1,0 +1,121 @@
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+  <div *ngIf="uporabnik" class="card p-4 w-50 bg-light" style="box-shadow: 23px 23px 23px 12px;">
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+      <img *ngIf="profilePic" [src]="profilePic" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+      <img *ngIf="!profilePic" src="./../../../assets/images/avatarDefault.png" class="rounded-circle" alt="Cinque Terre" width="150px" height="150px">
+      <span *ngIf="uporabnik.vloga !== 'upravljalecPredlogov'" class="name mt-3" ><h2 [innerHTML]="uporabnik.ime + ' ' + uporabnik.priimek + ', ' + (uporabnik.rojstniDatum | calculateAge)"></h2></span>
+      <span *ngIf="uporabnik.vloga === 'upravljalecPredlogov' && organizacija.length !== 0" class="name mt-3" ><h2>{{organizacija[0].naslov}}</h2></span>
+      <span class="idd text-secondary" [innerHTML]="novUporabnik.imeObcina"></span>
+      <div *ngIf="prijavljenUporabnik" class="d-flex mt-2 row">
+          <div *ngIf="prijavljenUporabnik!!.vloga === 'administrator' || uporabnik?.email === prijavljenUporabnik!!.email" class="col col-xl-6">
+            <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter" >Uredi Profil</button>
+          </div>
+          <div *ngIf="prijavljenUporabnik?.vloga === 'administrator' && uporabnik.vloga !== 'administrator'" class="col col-xl-6">
+              <button (click)="izbrisiUporabnika(uporabnik.idUporabnik)" class="btn btn-danger">Izbriši profil</button>
+          </div>
+      </div>
+
+      <div *ngIf="uporabnik.vloga !== 'upravljalecPredlogov'" class="d-flex mt-2">
+        <span class="number"><b><i class="fa fa-envelope" aria-hidden="true"></i></b><span [innerHTML]="' ' + uporabnik.email"></span></span>
+      </div>
+      <div *ngIf="uporabnik.vloga === 'upravljalecPredlogov' && organizacija.length !== 0" class="d-flex mt-2">
+        <span class="number"><b><i class="fa fa-map-marker" aria-hidden="true"></i></b> <span>{{uporabnik.mesto ? (uporabnik.naslov ? uporabnik.mesto + ', ' + uporabnik.naslov : '') : (uporabnik.naslov ? uporabnik.naslov : ' -')}}</span></span>
+      </div>
+      <div class="d-flex mt-2">
+        <span class="number"><b><i class="fa fa-phone" aria-hidden="true"></i></b> {{ uporabnik.telefonskaStevilka ? uporabnik.telefonskaStevilka : '-' }}</span>
+      </div>
+      <div *ngIf="uporabnik.vloga !== 'upravljalecPredlogov'" class="d-flex flex-row justify-content-center align-items-center mt-2">
+        <span class="number"><b><span [innerHTML]="uporabnik.stPredlogov"></span><span class="follow">{{ uporabnik.stPredlogov == 1 ? ' Predlog' : '' }}
+                                                                                                      {{ uporabnik.stPredlogov == 2 ? ' Predloga' : '' }}
+                                                                                                      {{ 2 < uporabnik.stPredlogov && uporabnik.stPredlogov < 5  ? ' Predlogi' : '' }}
+                                                                                                      {{ (uporabnik.stPredlogov == 0 || uporabnik.stPredlogov > 4) ? ' Predlogov' : '' }}</span></b></span>
+      </div>
+      <div *ngIf="uporabnik.vloga === 'upravljalecPredlogov' && organizacija.length !== 0" class="d-flex flex-row justify-content-center align-items-center mt-2">
+        <span class="number"><b><span></span><span class="follow">{{organizacija[0].razred}}</span></b></span>
+      </div>
+      <br />
+      <div class="text mt-2 text-center">
+        <span [innerHTML]="uporabnik.opis" ></span>
+      </div>
+      <br />
+      <div class="gap-3 mt-4 icons d-flex flex-row justify-content-center align-items-center">
+        <span><i class="fa fa-twitter pr-2"></i></span>
+        <span><i class="fa fa-facebook-f pr-2"></i></span>
+        <span><i class="fa fa-instagram pr-2"></i></span>
+        <span><i class="fa fa-linkedin pr-2"></i></span>
+      </div>
+      <div class=" px-2 rounded mt-2 date">
+        <span class="join">Uporabnik od {{ uporabnik.registriranOd | date: "d. MMMM, yyyy":"CEST":"sl" }} </span>
+      </div>
+    </div>
+  </div>
+
+  <!--edit profile area start-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Uredi profil</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="napakaNaObrazcu" class="form-group">
+            <div class="alert alert-danger p-2 mt-4" role="alert">
+              <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+            </div>
+          </div>
+          <app-dodaj-sliko [id]="profileID" [model]="'uporabnik'" [hasImage]="hasImage"></app-dodaj-sliko>
+          <form (ngSubmit)="preveriPodatke()">
+            <div class="p-4">
+              <div class="input-group mb-3">
+                <input name="nameChange" type="text" class="form-control" style="margin-right: 5%" [(ngModel)]="novUporabnik.ime"
+                       readonly/>
+                <input name="surname" type="text" class="form-control" readonly [(ngModel)]="novUporabnik.priimek"/>
+              </div>
+              <div class="input-group mb-3">
+                <input name="email" type="email" id="email" class="form-control" readonly [(ngModel)]="novUporabnik.email"/>
+                <div id="sporociloEmail" class="invalid-feedback"></div>
+              </div>
+              <div class="input-group mb-3">
+                <input name="passwordOld" type="password" id="oldPassword" placeholder="Staro geslo" class="form-control" [(ngModel)]="novUporabnik.staroGeslo">
+                <div id="sporociloOldPassword" class="invalid-feedback"></div>
+              </div>
+              <div class="input-group mb-3">
+                <input name="passwordNew" type="password" id="newPassword" placeholder="Novo geslo" class="form-control" [(ngModel)]="novUporabnik.novoGeslo">
+                <div id="sporociloconfirmNewPassword" class="invalid-feedback"></div>
+              </div>
+              <div *ngIf="obcine.length !== 0" class="input-group mb-3">
+                <select name="obcina" id="obcine" class="form-control" required [(ngModel)]="novUporabnik.obcina">
+                  <option disabled selected value="">Občina*</option>
+                  <option *ngFor="let obcina of obcine" [ngValue]="obcina.idObcina">{{ obcina.naslov }}</option>
+                </select>
+              </div>
+              <div class="input-group mb-3">
+                <input name="city" type="text" id="city" placeholder="Mesto" class="form-control" [(ngModel)]="novUporabnik.mesto">
+                <div id="sporociloCity" class="invalid-feedback"></div>
+              </div>
+              <div class="input-group mb-3">
+                <input name="address" type="text" id="address" placeholder="Naslov" class="form-control" [(ngModel)]="novUporabnik.naslov">
+                <div id="sporociloAddress" class="invalid-feedback"></div>
+              </div>
+              <div class="input-group mb-3">
+                <input name="phoneNumber" type="text" id="phoneNumber" placeholder="Telefon" class="form-control" [(ngModel)]="novUporabnik.telefonskaStevilka">
+                <div id="sporociloNumber" class="invalid-feedback"></div>
+              </div>
+              <div class="input-group mb-3">
+                <textarea name= "opis" id="about" placeholder="O meni" class="form-control" [(ngModel)]="novUporabnik.opis"></textarea>
+                <div id="sporociloAbout" class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+              <input type="submit" class="btn btn-primary" value="Shrani">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

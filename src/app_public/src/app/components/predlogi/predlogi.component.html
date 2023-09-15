@@ -1,0 +1,114 @@
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2" style="box-shadow: 2px 0px 22px 15px">
+ <div class="container">
+    <div class="row">
+       <div class="col-xl-12">
+          <div class="bradcam_text">
+             <h3>Predlogi</h3>
+             <button *ngIf="uporabnik && uporabnik.vloga === 'obcan'" type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter">
+                Dodaj predlog
+             </button>
+          </div>
+       </div>
+    </div>
+ </div>
+</div>
+<!--/ bradcam_area  -->
+
+<section class="blog_area">
+ <div class="container-flex">
+   <div class="row row-xl-12">
+       <div class="col col-xl-12 blog_right_sidebar ">
+           <aside class="single_sidebar_widget search_widget bg-dark pt-4 pl-3 pr-3 pb-2" style="box-shadow: 2px 0px 12px 5px">
+               <form action="#" class="m-0 p-0">
+                       <div class="row input-group m-0 p-0">
+                           <input type="text" class="form-control rounded" placeholder='Iskanje po naslovu predloga, organizaciji...'
+                                  onfocus="this.placeholder = ''"
+                                  onblur="this.placeholder = 'Iskanje po naslovu predloga, organizaciji...'"
+                                  (input)="filtriraj($event)">
+                       </div>
+                      <div class="row row-xl-12 input-group pt-2 justify-content-center m-0 p-0">
+                         <div class="col col-xl-6 form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked (click)="razvrsti('datum')">
+                            <label class="form-check-label text-light" for="flexRadioDefault1">
+                               Razvrsti po datumu
+                            </label>
+                         </div>
+                         <div class="col col-xl-6 form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="razvrsti('ocena')">
+                            <label class="form-check-label text-light" for="flexRadioDefault2">
+                               Razvrsti po oceni
+                            </label>
+                         </div>
+                      </div>
+               </form>
+           </aside>
+       </div>
+   </div>
+   <div class="row">
+       <article *ngFor="let predlogProjekta of predlogi" class="col col-xl-6" [hidden]="predlogProjekta.predlog.jePotrjen || (uporabnik && !predlogProjekta.predlog.jePotrjen && uporabnik?.vloga === 'upravljalecPredlogov') ? '' : 'hidden'">
+         <div class="card flex-md-row mb-4 box-shadow h-md-250">
+           <div class="card-body d-flex flex-column align-items-start">
+             <div class="row mb-0">
+               <div class="col col-xl-12">
+                 <h3><b *ngIf="predlogProjekta.predlog.jePotrjen === 1"><i class="fa fa-check-circle" aria-hidden="true"></i></b> {{predlogProjekta.predlog.naslov}} <b class="text-secondary"><i class="fa fa-star" aria-hidden="true"></i>{{predlogProjekta.ocena.toFixed(2)}}</b>
+                 </h3>
+               </div>
+             </div>
+             <span class="d-inline-block">Razred: <b>{{predlogProjekta.predlog.razred}}</b></span>
+             <p class="card-text mb-auto pt-2"> {{(predlogProjekta.predlog.sporocilo | slice:0:150) + '...'}} </p>
+             <div class="row w-100">
+               <div class="col col-xl-8 pt-2 text-muted ">
+                 <p>{{predlogProjekta.predlog.datum | date: "EEEE, M/d/yy, HH:mm":"CEST":"sl" }}</p>
+               </div>
+               <div class="col col-xl-4 d-flex justify-content-end">
+                 <a class="read_more pt-2 align-content-end" href="/predlog/{{predlogProjekta.predlog.idPredlogProjekta}}">Preberi več</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </article>
+   </div>
+ </div>
+</section>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Nov predlog</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div *ngIf="napakaNaObrazcu" class="form-group">
+                    <div class="alert alert-danger p-2 mt-4" role="alert">
+                      <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Naslov predloga:</label>
+                      <input type="text" class="form-control" id="recipient-name" [(ngModel)]="novPredlog.naslov" name="naslov">
+                  </div>
+                  <div class="form-group">
+                      <label for="message-text" class="col-form-label">Predlog:</label>
+                      <textarea class="form-control" id="message-text" [(ngModel)]="novPredlog.sporocilo" name="sporocilo"></textarea>
+                  </div>
+                  <div class="form-group" *ngIf="organizacije.length !== 0">
+                      <label for="message-text" class="col-form-label">Razred organizacije:</label>
+                      <select class="form-select form-control" aria-label="Default select example" [(ngModel)]="novPredlog.razred" name="razred" >
+                        <option selected disabled value="">--Izberi razred organizacije--</option>
+                        <option *ngFor="let org of organizacije" [value]="org.razred">{{org.razred}}</option>
+                      </select>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+            <button type="button" class="btn btn-primary" (click)="dodajPredlog()">Shrani</button>
+        </div>
+      </div>
+  </div>
+</div>

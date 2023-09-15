@@ -1,0 +1,85 @@
+<div class="bradcam_area bradcam_bg_1" style="box-shadow: 2px 0px 22px 15px">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Novice</h3>
+                    <button *ngIf="prijavljenUporabnik && prijavljenUporabnik.vloga === 'upravljalecNovic'" type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter">
+                        Dodaj novico
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container-flex">
+        <div class="row pt-5" >
+            <article class="col col-lg-6 blog_item" *ngFor="let novica of novice">
+                <div class="blog_item_img">
+                    <img class="card-img rounded-0" *ngIf="slikeNovic[novica.idnovica]" [src]="slikeNovic[novica.idnovica]" style="display: block; margin-left: auto;margin-right: auto; width: 75%;" class="image-news" alt="">
+                    <img class="card-img rounded-0" *ngIf="!slikeNovic[novica.idnovica]" src="/assets/images/newsDefault.png" style="display: block; margin-left: auto;margin-right: auto; width: 75%;" class="image-news" alt="">
+
+                  <div class="blog_item_date">
+                        <h4><span>{{novica.datumobjave | date: 'd.'}}</span> <br>{{novica.datumobjave | date: "MMMM":"CEST":"sl"}}</h4>
+                    </div>
+                </div>
+                <div class="blog_details">
+                    <a class="d-inline-block" routerLink="/novice/{{novica.idnovica}}">
+                        <h2>{{novica.naslov}}</h2>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nova novica</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div *ngIf="napakaNaObrazcu" class="form-group">
+                      <div class="alert alert-danger p-2 mt-4" role="alert">
+                        <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Naslov:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="novaNovica.naslov" name="naslov">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Vsebina:</label>
+                        <textarea class="form-control" id="message-text" [(ngModel)]="novaNovica.vsebina" name="vsebina" style="height: 450px;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="input-group mb-3 p-4">
+              <div class="d-flex flex-column align-items-center text-center">
+                <div *ngIf="isImageAdded">
+                  <img [src]="cardImageBase64" class="fit-picture" width="150" height="150"/>
+                </div>
+                <div *ngIf="!isImageAdded">
+                  <img src="/assets/images/newsDefault.png" class="fit-picture" width="150" height="150" />
+                </div>
+              </div>
+              <input type="file" class="form-control" id="changePhoto" name="profilePhotoChange"
+                     accept="image/png, image/jpeg, image/jpg" value="Izberi sliko" (change)="fileChangeEvent($event)" >
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+              <button type="button" class="btn btn-primary" (click)="dodajNovico()">Shrani</button>
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center pt-5 pb-5" >
+    <div class="col-md-6 col-sm-12 col-lg-4 shadow-lg pt-5 p-3 bg-light" style="box-shadow: 23px 23px 23px 12px;">
+      <div class="text-center">
+        <h3>Prijava</h3>
+      </div>
+      <form (ngSubmit)="posiljanjePodatkov()" autocomplete="off">
+        <div *ngIf="napakaNaObrazcu" class="form-group">
+          <div class="alert alert-danger p-2 mt-4" role="alert">
+            <i class="fas fa-exclamation-triangle pe-2"></i> {{ napakaNaObrazcu }}
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="input-group mb-4">
+            <input type="email" name="email" class="form-control" placeholder="E-naslov" required [(ngModel)]="prijavniPodatki.email">
+          </div>
+          <div class="input-group mb-4">
+            <input type="password" name="geslo" class="form-control" placeholder="Geslo" required [(ngModel)]="prijavniPodatki.geslo">
+          </div>
+          <div class="d-flex justify-content-center pt-3">
+            <button class="btn btn-outline-dark text-center mt-2" type="submit">
+              Prijava
+            </button>
+          </div>
+          <p class="text-center mt-4">Nimate profil? <a routerLink="/registracija">Registracija</a>
+          </p>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center row">
+    <table class="table table-hover" *ngIf="seznamUporabnikov && seznamUporabnikov.length !== 0">
+      <tbody>
+      <tr *ngFor="let uporabnik of seznamUporabnikov; let i = index">
+        <td class="pt-4"><h4><span  [innerHTML]="uporabnik.ime + ' ' + uporabnik.priimek + ' '"></span><b>
+          {{ uporabnik.vloga == 'obcan' ? ' Občan' : '' }}
+          {{ uporabnik.vloga == 'administrator' ? ' Administrator' : '' }}
+          {{ uporabnik.vloga == 'upravljalecPredlogov' ? ' Upravljalec predlogov' : '' }}
+          {{ uporabnik.vloga == 'upravljalecNovic' ? ' Upravljalec novic' : '' }}
+          {{ uporabnik.vloga == 'upravljalecDogodkov' ? ' Upravljalec dogodkov' : '' }}</b></h4></td>
+        <td>
+          <a href="profil/{{uporabnik.idUporabnik}}"> <button class="btn btn-outline-danger"> Odpri profil </button></a>
+        </td>
+        <td>
+          <button *ngIf="prijavljenUporabnik?.vloga === 'administrator' && uporabnik.vloga !== 'administrator'" type="submit" class="btn btn-danger" (click)="izbrisiUporabnika(uporabnik.idUporabnik, i)">Izbriši</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

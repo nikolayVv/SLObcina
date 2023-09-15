@@ -1,0 +1,55 @@
+<div class="header-area">
+  <div id="sticky-header" class="main-header-area bg-dark">
+    <div class="container-fluid p-0">
+      <div class="row align-items-center no-gutters">
+        <div class="col-xl-2 col-lg-2">
+          <div class="logo">
+            <a routerLink="" class="h1 text-light">SLObčina</a>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="main-menu  d-none d-lg-block">
+            <nav>
+              <ul id="navigation">
+                <li *ngIf="jePrijavljen && uporabnik?.vloga === 'administrator'"><a href="seznam">Uporabniki</a></li>
+                <li><a routerLink="obcina">O občini</a></li>
+                <li><a routerLink="predlogi">Predlogi</a></li>
+                <li><a routerLink="novice">Novice</a></li>
+                <li *ngIf="obcine && trenutnaObcina">
+                  <a class="text-muted">{{trenutnaObcina.naslov}} <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                  <ul class="submenu">
+                    <li *ngFor="let obcina of obcine">
+                      <a routerLink="{{vrniUrl()}}/#" (click)="prilagodiObcino(obcina)" >{{obcina.naslov}}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+          <div *ngIf="jePrijavljen" class="social_wrap d-flex align-items-center justify-content-end m-0">
+            <div class="login_text">
+              <a routerLink="profil/{{uporabnik?.id}}" class="btn btn-danger btn-lg"><i class="fa fa-user" aria-hidden="true"></i> Moj profil</a>
+            </div>
+            <div class="login_text">
+              <a (click)="odjava()" class="btn btn-outline-danger ">Odjava</a>
+            </div>
+          </div>
+          <div *ngIf="!jePrijavljen && vrniUrl() !== '/registracija' && vrniUrl() !== '/prijava'" class="social_wrap d-flex align-items-center justify-content-end m-0">
+            <div class="login_text">
+                <button routerLink="prijava" class="btn btn-outline-danger mr-4">Prijava</button>
+            </div>
+            <div class="login_text">
+                <button routerLink="registracija" class="btn btn-danger btn-lg">Registracija</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="mobile_menu d-block d-lg-none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_3" >
+  <div class="container-fluid pl-5 ml-5">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3 *ngIf="obcina">{{obcina!!.naslov}}</h3>
+
+          <!--               <button type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter">-->
+          <!--                  Dodaj predlog-->
+          <!--               </button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle2">Nova fotografija</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+<!--                        <label for="recipient-photo" class="col-form-label">Slika:</label>-->
+<!--                        <input type="file" class="form-control" id="recipient-photo">-->
+<!--                        <div class="invalid-feedback">-->
+<!--                            Datoteka mora biti v formatu .png ali .jpg-->
+<!--                        </div>-->
+                      <app-dodaj-sliko [id]="idObcina" [model]="'obcina'"></app-dodaj-sliko>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Uredi podatke</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Sporočilo:</label>
+            <textarea *ngIf="obcina" class="form-control" id="message-text" [(ngModel)]="noviPodatki"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+        <button type="button" class="btn btn-primary" (click)="urediPodatkov()" data-dismiss="modal">Shrani</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- our_latest_news_area_Start  -->
+<div class="our_latest_news_area pt-5 pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section_title text-center mb-80 mb-4">
+          <h3>O občini</h3>
+          <div class="devider">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div *ngIf="uporabnik && uporabnik.vloga === 'administrator'" class="pt-3">
+            <button  type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter">
+              Uredi podatke
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info_inner">
+      <p *ngIf="obcina">{{obcina!!.opis}}</p>
+    </div>
+  </div>
+</div>
+<!-- our_latest_news_area_end  -->
+
+<!-- appertment_area_start  -->
+<div class="appertment_area pt-5 pb-0">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="section_title text-center mb-5">
+        <h3>Fotogalerija</h3>
+        <div class="devider">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div *ngIf="uporabnik && (uporabnik.vloga === 'administrator' || uporabnik.vloga === 'obcan')" class="pt-3">
+          <button type="button" class="btn btn-danger col-xl-3" data-toggle="modal" data-target="#exampleModalCenter2">
+            Dodaj fotografijo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <owl-carousel-o [options]="customOptions" >
+
+    <ng-container *ngFor="let slika of slike">
+      <ng-template carouselSlide >
+        <div class="thumb">
+          <img [src]="slika.slika" class="p-2" alt="" height="100%">
+        </div>
+        <div *ngIf="uporabnik && uporabnik.vloga === 'administrator'" class="appertment_info">
+          <button (click)="izbrisiSlikoObcina(slika)" class="btn-lg btn-outline-danger ml-2">
+            Izbriši
+          </button>
+        </div>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+
+  <div class="testimonial_area bg-light pt-5 pb-5">
+    <div class="container-fluid pb-0">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section_title text-center mb-80 mt-4">
+            <h3>Organizacije</h3>
+            <div class="devider">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="pt-2">
+              <select *ngIf="razredi" class="form-select" aria-label="Default select example" (input)="vrniOrganizacije($event)">
+                <option selected disabled value="">--Izberi razred organizacije--</option>
+                <option *ngFor="let razred of razredi" value="{{razred.razred}}">{{razred.razred}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <owl-carousel-o [options]="customOptions" *ngIf="organizacije">
+        <ng-container *ngFor="let organizacija of organizacije">
+          <ng-template carouselSlide >
+            <div class="thumb">
+              <img *ngIf="slikeOrganizacij[organizacija.idorganizacija]" [src]="slikeOrganizacij[organizacija.idorganizacija]" class="rounded-circle p-2" alt="" height="100%">
+              <img *ngIf="!slikeOrganizacij[organizacija.idorganizacija]" src="/assets/images/default.png" class="rounded-circle p-2" alt="" height="100%">
+            </div>
+            <div class="appertment_info">
+              <a routerLink="/profil/{{organizacija.uporabnik}}"><h3 class="text-center text-danger">{{organizacija.naslov}}</h3></a>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
