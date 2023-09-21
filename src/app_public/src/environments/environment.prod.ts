@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'https://slobcina-tpo-2021-2022.herokuapp.com/api',
+  apiUrl: 'https://slobcina-72dabca83b84.herokuapp.com/api',
   production: true,
 };
