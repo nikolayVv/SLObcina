@@ -528,21 +528,3 @@ Kar pretvorimo v naše delavne ure: (160 / 60) \* 3,598 = **9,595 ČM**
 [1]: R. H. Thayer, E. Yourdon, **Software Engineering Project**, IEEE Computer Society, Los Alamitos, 2001.
 
 [2]: D. Lavbič, Skripta TPO, 2021
-
-
-## :interrobang: Dodatni komentarji izvajalcev predmeta
-
-**Problemska domena** projekta (tj. **Občinski obveščevalnik**) je bila **izbrana s pomočjo glasovanja** vseh študentov in izvajalcev pri predmetu TPO. To ne pomeni, da je predlagan projekt s tehnične plati brezhiben in da ne vsebuje napak oz. da je bil najbolje ocenjen. Pri vašem delu v okviru 2. LP, 3. LP in 4. LP vam tako opredeljuje zgolj problemsko domeno, ki jo lahko v nadaljevanju implementirate iz svojega zornega kota, kar pomeni, da bodo skupine dale poudarek na različne vidike sistema, ki ga bodo na koncu tudi implementirale.
-
-Omenjen predlog projekta je takšen, kot ga je pripravila zmagovalna skupina, kjer so zgolj odstranjeni deli o sodelujočih članih projekta. Pri nadaljnjem delu tako bodite dodatno pozorni na naslednje pomanjkljivosti tega projektnega predloga:
-
-* :exclamation: Pri **opisu projektne ideje** so prisotne naslednje pomanjkljivosti:
-  * v razdelku ozadje se govori o motivaciji, kar ni ustrezno,
-  * pred cilji manjka uvodni stavek (slike, tabele oz. alineje niso nikoli vključene samostojno, vedno jih v besedilu omenimo oz. referenciramo),
-* :exclamation: Pri **povzetku razdelitve projekta na aktivnosti** bi lahko zaradi boljše preglednosti dodali izris sklopov na diagramu Gantt.
-* :exclamation: Pri **obvladovanju tveganj** so prisotne naslednje pomanjkljivosti:
-  * ni navedene uporabljene preslikovalne tabele pri urejanju tveganj po izpostavljenosti,
-  * manjka strategija za obvladovanje tveganj.
-* :exclamation: Pomanjkljivosti **finančnega načrta, COCOMO II ocene**:
-  * tabela za izračun funkcijskih točk po funkcionalnostih je brez vsakega opisa, kaj se v tabeli nahaja,
-  * izračun vrednosti za PMAT je visoka (utež 1,8), kar pomeni, da naj bi bil proces razvoja po CMM zelo dobro definiran.
